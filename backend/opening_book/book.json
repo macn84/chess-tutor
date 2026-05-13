@@ -1,0 +1,1158 @@
+{
+  "version": "1.0",
+  "entries": [
+    {
+      "fen_key": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -",
+      "eco": "A00",
+      "opening_name": "Starting Position",
+      "variation_name": "",
+      "strategic_ideas": [
+        "The game begins. White has the advantage of the first move.",
+        "The most important principle: control the center with pawns and develop your pieces.",
+        "Aim to castle early to protect your king. Avoid moving the same piece twice in the opening."
+      ],
+      "main_line_moves": ["e4", "d4", "Nf3", "c4"],
+      "candidate_explanations": {
+        "e4": {
+          "label": "King's Pawn",
+          "prose": "The most popular first move. Controls d5 and f5, opens lines for the queen and bishop. Bobby Fischer called it 'best by test'.",
+          "follow_up_idea": "Black's most common responses: 1...e5 (Open Game), 1...c5 (Sicilian), 1...e6 (French), 1...c6 (Caro-Kann)."
+        },
+        "d4": {
+          "label": "Queen's Pawn",
+          "prose": "Controls e5 and c5. Often leads to more positional, strategic play. Black's best replies: 1...d5, 1...Nf6 (Indian systems), 1...f5 (Dutch).",
+          "follow_up_idea": "White often follows with 2.c4 to build a broad pawn center. Black can enter the Queen's Gambit (2...d5) or Indian defenses (2...Nf6)."
+        },
+        "Nf3": {
+          "label": "Réti Opening",
+          "prose": "A flexible hypermodern move. White delays committing a pawn to the center, instead developing a piece and controlling e5/d4 from afar.",
+          "follow_up_idea": "White will often follow with g3, Bg2, and c4 (King's Indian Attack) or d4 transposing to standard openings."
+        },
+        "c4": {
+          "label": "English Opening",
+          "prose": "Controls d5 from the flank. A solid, positional opening that often transposes to Queen's Gambit positions or leads to independent English structures.",
+          "follow_up_idea": "After 1.c4 e5 White plays the symmetrical English. After 1.c4 Nf6 or 1.c4 c5 the game stays in English territory."
+        }
+      },
+      "tags": ["starting-position"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq -",
+      "eco": "B00",
+      "opening_name": "King's Pawn Opening",
+      "variation_name": "",
+      "strategic_ideas": [
+        "White has staked a claim in the center and opened lines for the queen and dark-squared bishop.",
+        "Black's response determines the entire character of the game — symmetric or asymmetric, tactical or positional.",
+        "The most principled reply is 1...e5, fighting for the center. 1...c5 (Sicilian) is the most ambitious."
+      ],
+      "main_line_moves": ["e5", "c5", "e6", "c6", "d5", "Nf6"],
+      "candidate_explanations": {
+        "e5": {
+          "label": "Open Game",
+          "prose": "The classical symmetric response. Black immediately contests the center and opens lines. Leads to Ruy Lopez, Italian Game, Scotch, or King's Gambit depending on White's second move.",
+          "follow_up_idea": "White plays 2.Nf3, attacking the e5 pawn and preparing Bb5 (Ruy Lopez) or Bc4 (Italian). The fight for e5 defines Open Game theory."
+        },
+        "c5": {
+          "label": "Sicilian Defense",
+          "prose": "The most popular and combative reply. Black avoids a symmetric structure and fights for d4 with a flank pawn. Leads to rich, unbalanced positions with winning chances for both sides.",
+          "follow_up_idea": "After 2.Nf3 White can enter the Open Sicilian with 3.d4 (the sharpest), or sidestep theory with 2.c3 (Alapin) or 2.Nc3 (closed)."
+        },
+        "e6": {
+          "label": "French Defense",
+          "prose": "Solid and combative. Black prepares ...d5 to challenge the center. The resulting positions are strategically rich but Black's c8 bishop can become passive behind the e6 pawn.",
+          "follow_up_idea": "Main systems: 2.d4 d5 3.Nc3 (Winawer/Classical), 3.Nd2 (Tarrasch — avoids pin), or 3.e5 (Advance — gains space)."
+        },
+        "c6": {
+          "label": "Caro-Kann Defense",
+          "prose": "Prepares ...d5 while keeping the c8 bishop's diagonal open — the key advantage over the French. Solid and popular at all levels, from beginners to world champions.",
+          "follow_up_idea": "After 2.d4 d5 White has: 3.Nc3 (Classical), 3.e5 (Advance), 3.exd5 exd5 (Exchange — leads to symmetrical positions)."
+        },
+        "d5": {
+          "label": "Scandinavian Defense",
+          "prose": "Immediately challenges White's center. After 2.exd5 Black can recapture with the queen (2...Qxd5) or pawn (2...Nf6). Quick and principled but Black's queen can be harassed.",
+          "follow_up_idea": "After 2.exd5 Qxd5 3.Nc3 the queen must move again (3...Qa5 is most popular). Black gets a solid but slightly passive position."
+        },
+        "Nf6": {
+          "label": "Alekhine Defense",
+          "prose": "Invites White to chase the knight with pawns, then attacks the overextended center. Very provocative — Black offers a free tempo to lure White into a vulnerable pawn structure.",
+          "follow_up_idea": "After 2.e5 Nd5 White's main systems are 3.d4 d6 4.c4 (Four Pawns Attack) or 4.Nf3 (Exchange Variation). The knight will bounce around but the center is exposed."
+        }
+      },
+      "tags": ["open-game", "first-move"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -",
+      "eco": "C20",
+      "opening_name": "Open Game",
+      "variation_name": "1.e4 e5",
+      "strategic_ideas": [
+        "Both sides have staked central claims. The position is symmetric and the fight is for control of key central squares.",
+        "White must now choose a plan: attack the e5 pawn (2.Nf3), advance in the center (2.d4 — Center Game), gambit a pawn (2.f4 — King's Gambit), or develop a piece.",
+        "The e5 pawn is already under indirect tension — White's bishop on c1 is aimed at it."
+      ],
+      "main_line_moves": ["Nf3", "f4", "d4", "Nc3", "Bc4"],
+      "candidate_explanations": {
+        "Nf3": {
+          "label": "Best Continuation",
+          "prose": "The most principled move. Attacks the e5 pawn, develops a piece toward the center, and prepares Bc4 (Italian) or Bb5 (Ruy Lopez). Recommended for all levels.",
+          "follow_up_idea": "After 2.Nf3 Nc6 (defending e5) White plays 3.Bb5 (Ruy Lopez — the most theoretical) or 3.Bc4 (Italian Game — sharp and popular)."
+        },
+        "f4": {
+          "label": "King's Gambit",
+          "prose": "A daring gambit — White sacrifices a pawn to open the f-file and gain rapid development. A romantic opening that was the main weapon of 19th-century masters.",
+          "follow_up_idea": "After 2.f4 exf4 (accepted) White plays 3.Nf3 (King's Knight Gambit) or 3.Bc4 (King's Bishop Gambit). If 2...d5 or 2...Bc5 Black declines."
+        },
+        "d4": {
+          "label": "Center Game",
+          "prose": "Immediately opens the center. After 2...exd4 3.Qxd4 the queen is exposed early. Not the most subtle but leads to active positions.",
+          "follow_up_idea": "After 2.d4 exd4 3.Qxd4 Nc6 the queen must move again. The Danish Gambit (2.d4 exd4 3.c3) is a more aggressive option in this vein."
+        },
+        "Nc3": {
+          "label": "Vienna Game",
+          "prose": "Develops a piece and supports a future d4 push. Leads to the Vienna Game — solid, flexible, can become aggressive with f4.",
+          "follow_up_idea": "After 2.Nc3 Nf6 3.f4 (Vienna Gambit — very sharp) or 3.Bc4 (traditional Vienna). After 2.Nc3 Nc6 similar plans apply."
+        }
+      },
+      "tags": ["open-game", "e4-e5"]
+    },
+    {
+      "fen_key": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -",
+      "eco": "C40",
+      "opening_name": "Open Game",
+      "variation_name": "1.e4 e5 2.Nf3 Nc6",
+      "strategic_ideas": [
+        "Black has defended the e5 pawn with the most natural developing move.",
+        "White must now decide the opening's character: the Ruy Lopez (3.Bb5) pins the knight and creates long-term pressure, the Italian (3.Bc4) targets f7, or the Scotch (3.d4) opens the center immediately.",
+        "This is one of the most important decision points in 1.e4 e5 theory."
+      ],
+      "main_line_moves": ["Bb5", "Bc4", "d4", "Nc3", "f4"],
+      "candidate_explanations": {
+        "Bb5": {
+          "label": "Ruy Lopez (Spanish Opening)",
+          "prose": "The most ambitious and theoretical response. The bishop pins the knight that defends e5 — White creates long-term pressure without immediately winning the pawn. The Ruy Lopez is the king of open game theory.",
+          "follow_up_idea": "After 3.Bb5 a6 4.Ba4 (retreat) Nf6 5.O-O Be7 we enter the main Ruy Lopez. Black must find a way to untangle and eventually challenge White's center."
+        },
+        "Bc4": {
+          "label": "Italian Game",
+          "prose": "Targets the f7 pawn — the weakest point in Black's position at the start. The Italian is experiencing a massive revival at the top level. Leads to the Giuoco Piano after 3...Bc5 or the Two Knights after 3...Nf6.",
+          "follow_up_idea": "After 3.Bc4 Bc5 (Giuoco Piano) 4.c3 preparing d4 is the main line. After 3.Bc4 Nf6 (Two Knights) 4.Ng5 is the sharpest — attack f7 immediately."
+        },
+        "d4": {
+          "label": "Scotch Game",
+          "prose": "Immediately opens the center. After 3...exd4 4.Nxd4 White has active piece play. The Scotch was Kasparov's favorite weapon against Karpov in their 1990 World Championship match.",
+          "follow_up_idea": "After 3.d4 exd4 4.Nxd4 Nf6 5.Nxc6 bxc6 (Mieses) or 4...Bc5 (Classical Scotch). The Scotch Four Knights (4...Nf6 5.Nc3) is also popular."
+        },
+        "Nc3": {
+          "label": "Three Knights / Vienna",
+          "prose": "Developing another piece. Can transpose to Three Knights (3...Nf6) or Four Knights (3...Nf6 4.Nf3). Flexible but less forcing than the main lines.",
+          "follow_up_idea": "After 3.Nc3 Nf6 4.Bb5 (Four Knights, Spanish) or 4.d4 (Goring Gambit style) White has fighting chances."
+        }
+      },
+      "tags": ["open-game", "ruy-lopez", "italian"]
+    },
+    {
+      "fen_key": "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+      "eco": "C60",
+      "opening_name": "Ruy Lopez (Spanish Opening)",
+      "variation_name": "3.Bb5",
+      "strategic_ideas": [
+        "The bishop on b5 indirectly attacks e5 by pinning the Nc6. If Black plays ...d6 and White takes Nxc6, d takes recapture, then Nxe5.",
+        "Black's most popular reply is 3...a6, forcing the bishop to declare its intentions.",
+        "The strategic battle: White wants to maintain the e4 pawn and eventually advance d4. Black wants to free the position with ...d5."
+      ],
+      "main_line_moves": ["a6", "Nf6", "d6", "Bc5", "Nd4"],
+      "candidate_explanations": {
+        "a6": {
+          "label": "Morphy Defense (Main Line)",
+          "prose": "Forces White to decide: take on c6 (Exchange Variation — gives Black the bishop pair but creates doubled pawns), retreat to a4 (keeping tension), or c6 (rarely played). Most players retreat to a4.",
+          "follow_up_idea": "After 3...a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3 we reach the main Ruy Lopez tabiya — one of chess's most deeply analyzed positions."
+        },
+        "Nf6": {
+          "label": "Berlin Defense",
+          "prose": "The 'Berlin Wall' — Popularized by Vladimir Kramnik who used it to defeat Kasparov for the World Championship in 2000. After 4.O-O Nxe4 5.d4 Nd6 6.Bxc6 dxc6 7.dxe5 Nf5 Black has an endgame where his king walks to the center.",
+          "follow_up_idea": "The Berlin Endgame (after 4.O-O Nxe4 5.d4 Nd6) is famous for being drawish at the top level but very instructive. White has the initiative, Black has solid structure."
+        },
+        "d6": {
+          "label": "Steinitz Defense",
+          "prose": "Defends e5 solidly but blocks the bishop. A rather passive choice; White maintains pressure with 4.c3 and d4.",
+          "follow_up_idea": "After 3...d6 4.d4 Bd7 5.Nc3 Nf6 6.O-O Be7 we reach a solid but slightly cramped position for Black."
+        }
+      },
+      "tags": ["ruy-lopez", "open-game"]
+    },
+    {
+      "fen_key": "r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+      "eco": "C60",
+      "opening_name": "Ruy Lopez",
+      "variation_name": "Morphy Defense (3...a6)",
+      "strategic_ideas": [
+        "Black has played ...a6, forcing the bishop's hand. The main move is 4.Ba4, keeping the tension.",
+        "After 4.Bxc6 dxc6 5.Nxe5 Qd4 Black wins back the pawn with excellent compensation — the bishop pair and active play.",
+        "White usually maintains the bishop on a4 and castles quickly, aiming for the Main Line Ruy Lopez."
+      ],
+      "main_line_moves": ["Ba4", "Bxc6"],
+      "candidate_explanations": {
+        "Ba4": {
+          "label": "Main Line — Keep the Tension",
+          "prose": "The most common retreat. The bishop maintains the pin on Nc6 without committing to an exchange. Now 4...Nf6 5.O-O leads to the main Ruy Lopez.",
+          "follow_up_idea": "After 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 O-O 8.c3 d6 9.h3 we reach the main tabiya where White has many plans (10.d4, 10.d3, 10.Be3)."
+        },
+        "Bxc6": {
+          "label": "Exchange Variation",
+          "prose": "White immediately exchanges on c6, giving Black doubled pawns in exchange for White's bishop. Black gets the bishop pair. The resulting positions are strategically rich — White has better pawn structure, Black has active pieces.",
+          "follow_up_idea": "After 4.Bxc6 dxc6 5.O-O f6 (defending e5) or 5.Nxe5? Qd4! wins back the pawn. The Exchange Ruy Lopez is often chosen by players wanting a long strategic game."
+        }
+      },
+      "tags": ["ruy-lopez", "morphy-defense"]
+    },
+    {
+      "fen_key": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+      "eco": "C50",
+      "opening_name": "Italian Game",
+      "variation_name": "3.Bc4",
+      "strategic_ideas": [
+        "The Italian bishop eyes f7 — Black's most vulnerable square at the start of the game.",
+        "After 3...Bc5 we get the Giuoco Piano (Quiet Game — though it can get sharp).",
+        "After 3...Nf6 we get the Two Knights Defense — much more aggressive for Black.",
+        "The Italian is currently the most popular opening at the top level, replacing the Ruy Lopez."
+      ],
+      "main_line_moves": ["Bc5", "Nf6", "d6"],
+      "candidate_explanations": {
+        "Bc5": {
+          "label": "Giuoco Piano",
+          "prose": "Symmetric development. Both bishops face each other. White plays 4.c3 preparing d4 (the Giuoco Piano) or 4.b4 (Evans Gambit — a spectacular 19th-century gambit). Modern top-level games in this line are very sharp.",
+          "follow_up_idea": "After 3...Bc5 4.c3 Nf6 5.d4 exd4 6.cxd4 Bb4+ 7.Nc3 is the main line of modern Italian theory. White will gain the center; Black fights back with piece activity."
+        },
+        "Nf6": {
+          "label": "Two Knights Defense",
+          "prose": "Black counterattacks immediately. After 4.Ng5 (attacking f7) the game gets very sharp. 4...d5 5.exd5 Na5 is the most combative. Less patient players choose this over the Giuoco Piano.",
+          "follow_up_idea": "After 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Be2 h6 9.Nf3 e4 Black has active piece play for the pawn. The Fried Liver (5...Nxd5?! 6.Nxf7!!) is a well-known sacrifice."
+        }
+      },
+      "tags": ["italian-game", "open-game"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -",
+      "eco": "B20",
+      "opening_name": "Sicilian Defense",
+      "variation_name": "",
+      "strategic_ideas": [
+        "The most popular chess opening in the world. Black fights for the d4 square with a flank pawn, avoiding a symmetric structure.",
+        "Black's strategic idea: trade the c-pawn for White's d-pawn (if White plays d4), leaving Black with a central majority (d/e pawns) vs White's a/b/c majority.",
+        "The resulting imbalance gives both sides winning chances — White attacks on the kingside, Black counterattacks on the queenside."
+      ],
+      "main_line_moves": ["Nf3", "c3", "Nc3", "f4"],
+      "candidate_explanations": {
+        "Nf3": {
+          "label": "Open Sicilian Setup",
+          "prose": "The most popular continuation. After 2...Nc6 or 2...d6 White plays 3.d4, entering the Open Sicilian — the most complex and deeply studied battleground in chess.",
+          "follow_up_idea": "After 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Black chooses a variation: 5...a6 (Najdorf), 5...g6 (Dragon), 5...Nc6 (Classical), 5...e6 (Scheveningen)."
+        },
+        "c3": {
+          "label": "Alapin Variation",
+          "prose": "White prepares d4 without allowing cxd4. After 2...d5 3.exd5 Qxd5 or 2...Nf6 3.e5 Nd5 the game stays in Alapin territory — less theoretical but rich strategically.",
+          "follow_up_idea": "The Alapin avoids the main Sicilian theory. After 2.c3 Nf6 3.e5 Nd5 4.d4 cxd4 5.Nf3 the game resembles a French Advance but with colors reversed for Black."
+        },
+        "Nc3": {
+          "label": "Closed Sicilian",
+          "prose": "White fianchettoes the kingside bishop and aims for a kingside attack without opening the center. Less theoretical but still dangerous.",
+          "follow_up_idea": "After 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.d3 d6 6.Be3 White slowly builds up. Black counterattacks with ...d5 or queenside play."
+        },
+        "f4": {
+          "label": "Grand Prix Attack",
+          "prose": "An aggressive system: White aims for a kingside attack with Nf3, Bc4/Bb5, and eventually a kingside pawn storm. Bypasses the main Sicilian theory.",
+          "follow_up_idea": "After 2.f4 Nc6 3.Nf3 g6 4.Bc4 or 2.Nc3 first then f4 — a popular club player weapon. Black should counter in the center with ...e6 and ...d5."
+        }
+      },
+      "tags": ["sicilian", "semi-open"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -",
+      "eco": "B23",
+      "opening_name": "Sicilian Defense",
+      "variation_name": "Open Sicilian — 2.Nf3",
+      "strategic_ideas": [
+        "White has played 2.Nf3, indicating intention to play 3.d4 — the Open Sicilian.",
+        "Black now decides their defensive setup: 2...d6 (flexible, leads to Najdorf/Dragon/Classical), 2...Nc6 (Classical setup), 2...e6 (leads to Scheveningen/Kan).",
+        "The choice here largely determines Black's entire strategic plan for the middlegame."
+      ],
+      "main_line_moves": ["d6", "Nc6", "e6", "a6", "g6"],
+      "candidate_explanations": {
+        "d6": {
+          "label": "Main Line — Najdorf/Dragon Setup",
+          "prose": "The most flexible response. After 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Black chooses 5...a6 (Najdorf — the most popular opening in the world among professionals), 5...g6 (Dragon), or 5...Nc6 (Classical).",
+          "follow_up_idea": "The Najdorf (5...a6) is Bobby Fischer's and Magnus Carlsen's favorite weapon. It prepares ...e5 or ...b5, creating queenside counterplay while White attacks on the kingside."
+        },
+        "Nc6": {
+          "label": "Classical Sicilian Setup",
+          "prose": "Immediately develops the knight to its most natural square. After 3.d4 cxd4 4.Nxd4 we reach the Classical Sicilian where Black may play ...g6 (Accelerated Dragon), ...e5 (Kalashnikov), or ...Nf6 (Classical).",
+          "follow_up_idea": "The Accelerated Dragon (2...Nc6 3.d4 cxd4 4.Nxd4 g6) avoids the Yugoslav Attack that plagues the normal Dragon. After 5.c4 Black can even try the Maróczy Bind structure."
+        },
+        "e6": {
+          "label": "Scheveningen/Kan Setup",
+          "prose": "Solid and flexible. After 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Black can play 5...d6 (Scheveningen) or go into the Kan (with ...a6 instead of ...Nf6). Both lead to rich, positional Sicilian play.",
+          "follow_up_idea": "The Scheveningen (5...d6) was Fischer's main target. He called it the 'hedgehog' — Black builds a solid fortress and waits for White to overextend."
+        }
+      },
+      "tags": ["sicilian", "open-sicilian"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp2pppp/3p4/2p5/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq -",
+      "eco": "B50",
+      "opening_name": "Sicilian Defense",
+      "variation_name": "Open Sicilian — 2.Nf3 d6 3.d4",
+      "strategic_ideas": [
+        "White has played d4, initiating the main Open Sicilian. Black must capture: 3...cxd4.",
+        "After 4.Nxd4 we reach the critical tabiya where Black chooses their variation.",
+        "This is the most theoretically intensive position in chess — literally hundreds of books written about what comes next."
+      ],
+      "main_line_moves": ["cxd4"],
+      "candidate_explanations": {
+        "cxd4": {
+          "label": "Open Sicilian — Must Take",
+          "prose": "Black must capture to execute the Sicilian strategy. After 4.Nxd4 Nf6 5.Nc3 Black chooses: a6 (Najdorf), g6 (Dragon), Nc6 (Classical), e6 (Scheveningen), a6+e6 (Kan/Taimanov).",
+          "follow_up_idea": "Each variation has distinct strategic themes. The Najdorf fights for queenside space (b5, a5). The Dragon uses the g7 bishop to attack. The Scheveningen builds a flexible center."
+        }
+      },
+      "tags": ["sicilian", "open-sicilian"]
+    },
+    {
+      "fen_key": "rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq -",
+      "eco": "B90",
+      "opening_name": "Sicilian Defense — Najdorf",
+      "variation_name": "5.Nc3 — Black to play 5...a6",
+      "strategic_ideas": [
+        "We're at the critical Najdorf tabiya: 1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3.",
+        "Black's defining move is 5...a6 — the Najdorf. This prevents Nb5 and Bb5, and prepares ...b5, ...e5, ...Nc6.",
+        "The Najdorf is the most analyzed opening in chess history. Fischer played it, Kasparov built his career on it."
+      ],
+      "main_line_moves": ["a6", "g6", "Nc6", "e6"],
+      "candidate_explanations": {
+        "a6": {
+          "label": "Najdorf Variation",
+          "prose": "The signature Najdorf move. Prevents Nb5 and Bb5, prepares ...b5, ...Nbd7, and ...e5 or ...e6. White's main responses: 6.Bg5 (English Attack style), 6.Be3 (English Attack), 6.Bc4, 6.f3, 6.Be2.",
+          "follow_up_idea": "After 5...a6 6.Be3 e5 7.Nb3 Be6 8.f3 h5 (Najdorf with ...h5) is a modern line. Or 6.Bg5 e6 7.f4 is the main Classical Najdorf — extremely sharp and theoretical."
+        },
+        "g6": {
+          "label": "Dragon Variation",
+          "prose": "Black immediately establishes the Dragon structure — the g7 bishop will be a monster on the long diagonal. The Yugoslav Attack (6.Be3 Bg7 7.f3 O-O 8.Qd2 Nc6 9.Bc4/g4) is White's sharpest weapon.",
+          "follow_up_idea": "The Dragon is a race: White attacks on the queenside (after long castling) with h4-h5, Black counterattacks with ...d5 and uses the Rg8 on the half-open g-file. Extremely tactical."
+        },
+        "Nc6": {
+          "label": "Classical Sicilian",
+          "prose": "Develops the knight naturally. After 6.Bg5 e6 7.Qd2 a6 (Richter-Rauzer) or 6.Bc4 e6 (Social Sicilian). Flexible and leads to rich positional battles.",
+          "follow_up_idea": "The Richter-Rauzer (6.Bg5 e6 7.Qd2 a6 8.O-O-O Bd7) is a classical complex Sicilian where White attacks on the kingside with f4-f5."
+        }
+      },
+      "tags": ["sicilian", "najdorf"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -",
+      "eco": "C00",
+      "opening_name": "French Defense",
+      "variation_name": "1.e4 e6",
+      "strategic_ideas": [
+        "Black prepares ...d5 to challenge White's center. The French is solid and fighting.",
+        "The key strategic tension: Black will push ...d5, White will try to maintain the e4 pawn or push e5 to gain space.",
+        "Black's main problem: the c8 bishop is often blocked by the e6 pawn and can become passive."
+      ],
+      "main_line_moves": ["d4"],
+      "candidate_explanations": {
+        "d4": {
+          "label": "Main Line",
+          "prose": "White establishes a strong pawn center. After 2...d5 White can play 3.Nc3 (Classical/Winawer), 3.Nd2 (Tarrasch), or 3.e5 (Advance).",
+          "follow_up_idea": "The three main systems: 3.Nc3 (leads to Winawer 3...Bb4 or Classical 3...Nf6), 3.Nd2 (Tarrasch — avoids the Winawer pin), 3.e5 (Advance — White gains kingside space)."
+        }
+      },
+      "tags": ["french", "semi-open"]
+    },
+    {
+      "fen_key": "rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq -",
+      "eco": "C00",
+      "opening_name": "French Defense",
+      "variation_name": "2.d4 d5 — White to choose system",
+      "strategic_ideas": [
+        "The classical French pawn structure is established. White must choose a plan.",
+        "The central tension (e4 vs d5) is the defining feature. White can maintain the pawn, trade it (Exchange), or advance it.",
+        "Each system has completely different strategic character — choose based on your style."
+      ],
+      "main_line_moves": ["Nc3", "Nd2", "e5"],
+      "candidate_explanations": {
+        "Nc3": {
+          "label": "Classical/Winawer — Most Complex",
+          "prose": "Develops naturally and supports e4. After 3...Bb4 we get the Winawer (Black pins the knight, White plays 4.e5 creating a locked pawn center). After 3...Nf6 we get the Classical French.",
+          "follow_up_idea": "The Winawer (3...Bb4 4.e5 c5 5.a3 Bxc3+ 6.bxc3) leads to the most complex French positions — White gets the bishop pair and pawn center, Black gets queenside play with ...c4."
+        },
+        "Nd2": {
+          "label": "Tarrasch Variation — Avoid the Winawer",
+          "prose": "Protects e4 while avoiding the Winawer pin (3...Bb4 doesn't pin anything useful). After 3...c5 or 3...Nf6 Black has free development. Leads to dynamic positions.",
+          "follow_up_idea": "After 3.Nd2 c5 4.Ngf3 cxd4 (or 4...Nc6 5.exd5) leads to an isolated queen pawn (IQP) position. After 3.Nd2 Nf6 4.e5 Nfd7 5.Bd3 c5 is the main Tarrasch."
+        },
+        "e5": {
+          "label": "Advance Variation — Space and Attack",
+          "prose": "White immediately claims kingside space. Black must attack the center with ...c5 and ...Nc6. The game is strategically clear but requires precise play from both sides.",
+          "follow_up_idea": "After 3.e5 c5 4.c3 Nc6 5.Nf3 Qb6 Black attacks d4 and b2. White defends with 6.a3 and plans Bd3 and 0-0. The Milner-Barry Gambit (6.Bd3 cxd4 7.cxd4 Bd7 8.O-O Nxd4?! 9.Nxd4 Qxd4 10.Nf3) is a well-known attacking try."
+        }
+      },
+      "tags": ["french", "semi-open"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -",
+      "eco": "B10",
+      "opening_name": "Caro-Kann Defense",
+      "variation_name": "1.e4 c6",
+      "strategic_ideas": [
+        "Black prepares ...d5 while keeping the c8 bishop's diagonal open — unlike the French where it's blocked by e6.",
+        "The Caro-Kann is solid and popular at all levels. Many world champions have used it as a reliable defense.",
+        "Black's structure after ...d5 and exd5 cxd5 is symmetrical with a healthy pawn structure."
+      ],
+      "main_line_moves": ["d4"],
+      "candidate_explanations": {
+        "d4": {
+          "label": "Main Line",
+          "prose": "White occupies the center. After 2...d5 White has three major systems: 3.Nc3 (Classical), 3.e5 (Advance), or 3.exd5 cxd5 (Exchange).",
+          "follow_up_idea": "The Classical (3.Nc3 dxe4 4.Nxe4 Bf5) leads to the famous Caro-Kann Classical — Black develops the bishop actively. The Advance (3.e5 Bf5) gives White space. The Exchange (3.exd5) leads to a symmetrical endgame-oriented position."
+        }
+      },
+      "tags": ["caro-kann", "semi-open"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp1ppppp/2p5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq -",
+      "eco": "B13",
+      "opening_name": "Caro-Kann Defense",
+      "variation_name": "2.d4 — White to play",
+      "strategic_ideas": [
+        "White has established a strong center. Black will play 2...d5 to challenge immediately.",
+        "The battle for the center defines Caro-Kann strategy: Black wants to maintain the d5 pawn while developing actively."
+      ],
+      "main_line_moves": ["d5"],
+      "candidate_explanations": {
+        "d5": {
+          "label": "Main Line — Challenge the Center",
+          "prose": "The principled response. Now White can exchange on d5 (Exchange), advance e5 (Advance), or defend e4 with 3.Nc3 (Classical) or 3.Nd2.",
+          "follow_up_idea": "After 2...d5 3.Nc3 dxe4 4.Nxe4 Bf5 (Classical — Black develops the bishop before playing Nd7 or Nf6) or 3.e5 Bf5 4.Nf3 e6 (Advance) are the main lines."
+        }
+      },
+      "tags": ["caro-kann"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq -",
+      "eco": "B13",
+      "opening_name": "Caro-Kann Defense",
+      "variation_name": "2.d4 d5 — Classical, Advance, or Exchange",
+      "strategic_ideas": [
+        "The central tension is set. White must choose: maintain the tension (3.Nc3), advance (3.e5), or exchange (3.exd5).",
+        "3.Nc3 is Classical — after 3...dxe4 4.Nxe4 Bf5 Black develops the bishop actively, a key advantage over the French.",
+        "3.e5 (Advance) gives White space but Black targets the advanced pawns with ...c5 and ...Nc6."
+      ],
+      "main_line_moves": ["Nc3", "e5", "exd5"],
+      "candidate_explanations": {
+        "Nc3": {
+          "label": "Classical Caro-Kann",
+          "prose": "After 3...dxe4 4.Nxe4 Bf5 Black's bishop is beautifully active — this is Black's main advantage in the Caro-Kann vs the French. 5.Ng3 Bg6 6.h4 h6 7.Nf3 Nd7 8.h5 Bh7 9.Bd3 is the main Classical tabiya.",
+          "follow_up_idea": "White tries to attack with Ng5 and h5 to trap the bishop on h7 or trade it off. Black develops solidly with ...e6, ...Ngf6, and ...Be7, then breaks with ...c5."
+        },
+        "e5": {
+          "label": "Advance Variation",
+          "prose": "White gains space immediately. Black plays 3...Bf5 to develop the bishop before the pawn chain is locked (like in the French, where ...Bf5 isn't possible). 4.Nf3 e6 5.Be2 c5 is the main continuation.",
+          "follow_up_idea": "After 3.e5 Bf5 4.Nf3 e6 5.Be2 c5 6.O-O Nc6 7.c3 Black attacks the center with ...cxd4 and ...Bb4 or ...Qb6. White's space is an asset if defended properly."
+        },
+        "exd5": {
+          "label": "Exchange Variation",
+          "prose": "Leads to a symmetrical, often drawish position. After 3...cxd5 White has the Panov Attack (4.c4) or the normal Exchange. The Panov (4.c4 Nf6 5.Nc3 e6) leads to rich IQP positions.",
+          "follow_up_idea": "The Panov Attack (3.exd5 cxd5 4.c4) is the most ambitious Exchange line — it gives Black an isolated queen pawn but rich piece activity. The normal Exchange (4.Bd3) is quieter."
+        }
+      },
+      "tags": ["caro-kann", "classical"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq -",
+      "eco": "A40",
+      "opening_name": "Queen's Pawn Opening",
+      "variation_name": "1.d4",
+      "strategic_ideas": [
+        "White controls the center from the queenside. The d4 pawn supports c4 and e4, and White often builds a broad center.",
+        "Unlike 1.e4, queen pawn games tend to be more positional and strategic, though they can also become very sharp.",
+        "Black's options: 1...d5 (classical), 1...Nf6 (Indian systems), 1...f5 (Dutch), 1...e6 (can transpose to French or Queen's Gambit)."
+      ],
+      "main_line_moves": ["d5", "Nf6", "f5", "e6"],
+      "candidate_explanations": {
+        "d5": {
+          "label": "Classical Queen's Pawn",
+          "prose": "The symmetric, classical response. After 2.c4 we get the Queen's Gambit — one of the oldest and most respected openings. If White doesn't play c4, Black has a solid symmetrical position.",
+          "follow_up_idea": "After 1.d4 d5 2.c4 Black can accept (2...dxc4 — QGA) or decline (2...e6 — QGD, 2...c6 — Slav). The Slav is currently very fashionable at the top level."
+        },
+        "Nf6": {
+          "label": "Indian Defense Setup",
+          "prose": "Black delays committing the d-pawn. After 2.c4 e6 (Queen's Indian/Nimzo-Indian) or 2.c4 g6 (King's Indian/Grünfeld) Black fights for the center with pieces rather than pawns.",
+          "follow_up_idea": "The Nimzo-Indian (2.c4 e6 3.Nc3 Bb4) is Black's most theoretically reliable response. The King's Indian (2.c4 g6 3.Nc3 Bg7 4.e4 d6) is dynamic and counterattacking."
+        },
+        "f5": {
+          "label": "Dutch Defense",
+          "prose": "An aggressive, fighting response. Black immediately stakes out kingside territory. The Dutch can transpose to the Classical (2.c4 Nf6 3.Nc3 e6), Stonewall (pawns on d5, e6, f5), or Leningrad (g6, Bg7) setup.",
+          "follow_up_idea": "The Stonewall Dutch (e6, d5, Nf6, Be7, O-O) is solid but passive. The Leningrad Dutch (g6, Bg7) is more dynamic. White's best response to 1...f5 is 2.Bg5! — the Staunton Gambit."
+        }
+      },
+      "tags": ["queens-pawn", "d4"]
+    },
+    {
+      "fen_key": "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq -",
+      "eco": "D06",
+      "opening_name": "Queen's Gambit",
+      "variation_name": "1.d4 d5 2.c4",
+      "strategic_ideas": [
+        "White offers the Queen's Gambit — the c4 pawn attacks d5. White wants to gain control of the center by exchanging c-pawn for Black's d-pawn.",
+        "Despite the name, it's not truly a gambit — if Black accepts (2...dxc4), White can usually regain the pawn while gaining a tempo.",
+        "Black's choices: Accept (QGA), Decline with e6 (QGD), or the modern Slav (c6)."
+      ],
+      "main_line_moves": ["dxc4", "e6", "c6", "Nf6", "c5"],
+      "candidate_explanations": {
+        "dxc4": {
+          "label": "Queen's Gambit Accepted",
+          "prose": "Black captures and must defend the pawn or allow White to regain it with advantage. After 3.Nf3 Nf6 4.e3 (or 4.Nc3) Black holds the pawn only temporarily. The QGA leads to open, dynamic positions where Black tries to free the game quickly.",
+          "follow_up_idea": "After 2...dxc4 3.Nf3 Nf6 4.e3 e6 5.Bxc4 c5 is the main QGA. Black will equalize with ...a6, ...b5 (holding the pawn) then ...Nc6 and ...cxd4. Or 3...a6 4.e3 Bg4 is the Alekhine QGA."
+        },
+        "e6": {
+          "label": "Queen's Gambit Declined",
+          "prose": "The classical, solid response. Black reinforces d5 with a pawn but blocks the c8 bishop. The QGD leads to rich strategic battles. Main lines: Exchange (4.cxd5 exd5), Tartakower (Bb7 and ...dxc4), and Orthodox.",
+          "follow_up_idea": "After 2...e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 h6 7.Bh4 b6 is the Tartakower/Makogonov/Bondarevsky (TMB) — a reliable QGD setup. Black prepares ...Bb7 and ...dxc4."
+        },
+        "c6": {
+          "label": "Slav Defense",
+          "prose": "Modern and very popular. Black defends d5 with a pawn while keeping the c8 bishop's diagonal open (unlike the QGD). After 3.Nf3 Nf6 4.Nc3 the game can go many ways.",
+          "follow_up_idea": "The Semi-Slav (4...e6) is an incredibly rich and complex system. The Meran (5.e3 Nbd7 6.Bd3 dxc4 7.Bxc4 b5) and Anti-Meran (5.Ng5) are deeply theoretical. The Classical Slav (4...dxc4 5.a4 Bf5) is also important."
+        }
+      },
+      "tags": ["queens-gambit", "d4", "c4"]
+    },
+    {
+      "fen_key": "rnbqkb1r/ppp1pppp/5n2/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq -",
+      "eco": "D30",
+      "opening_name": "Queen's Gambit — 3.Nc3",
+      "variation_name": "Main Line Setup",
+      "strategic_ideas": [
+        "White has played 3.Nc3, the most natural development. Now Black decides their defensive setup.",
+        "With 3...Bf5 or 3...Bg4 Black tries to solve the light-squared bishop problem before it becomes trapped.",
+        "3...e6 enters the QGD proper; 3...c6 keeps Slav options."
+      ],
+      "main_line_moves": ["Bf5", "e6", "c6", "Bg4"],
+      "candidate_explanations": {
+        "Bf5": {
+          "label": "Queen's Gambit Declined — Tartakower",
+          "prose": "Develops the bishop actively before playing ...e6. After 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg6 7.Bd3 leads to the Exchange Variation with the bishop already active. A modern and popular choice.",
+          "follow_up_idea": "After 3...Bf5 4.cxd5 (or 4.Nf3 e6 transposing) 4...exd5 (Moscow Variation territory or pure QGD lines) — the bishop on f5 is Black's key asset."
+        },
+        "e6": {
+          "label": "Queen's Gambit Declined (Classic)",
+          "prose": "The traditional QGD setup. Black solidifies d5 and will develop Be7, O-O, Nbd7. White's plan: Bg5 pinning the Nf6, then e4 or e3 + Bd3 preparing a kingside attack.",
+          "follow_up_idea": "After 3...e6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Rc1 c6 we reach the main QGD tabiya. Black's solid but passive structure faces White's potential kingside attack."
+        }
+      },
+      "tags": ["queens-gambit", "qgd"]
+    },
+    {
+      "fen_key": "rnbqkb1r/pppp1ppp/4pn2/8/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq -",
+      "eco": "E20",
+      "opening_name": "Nimzo-Indian Defense",
+      "variation_name": "1.d4 Nf6 2.c4 e6 3.Nc3",
+      "strategic_ideas": [
+        "We're at the critical moment: after 1.d4 Nf6 2.c4 e6 3.Nc3, Black plays 3...Bb4 — the Nimzo-Indian.",
+        "The Nimzo-Indian is one of Black's most reliable and popular defenses. Black pins the knight that defends e4.",
+        "Strategic battle: White wants to build the center with e4, Black disrupts it. After ...Bxc3, White gets the bishop pair but potentially weak pawns."
+      ],
+      "main_line_moves": ["Bb4"],
+      "candidate_explanations": {
+        "Bb4": {
+          "label": "Nimzo-Indian Defense",
+          "prose": "The defining Nimzo move. Black pins the Nc3 which would support an e4 advance. White's main systems: 4.Qc2 (Classical — avoids doubled pawns), 4.e3 (Rubinstein — solid), 4.a3 (Sämisch — forces the issue), 4.f3 (aggressive).",
+          "follow_up_idea": "After 4.Qc2 O-O 5.a3 Bxc3+ 6.Qxc3 b6 (Nimzo with ...b6 and ...Bb7) Black develops harmoniously. After 4.e3 O-O 5.Bd3 d5 6.Nf3 c5 (Rubinstein) — a rich strategic battle over the center."
+        }
+      },
+      "tags": ["nimzo-indian", "d4", "indian"]
+    },
+    {
+      "fen_key": "rnbqkb1r/pppp1ppp/4pn2/8/2PP4/8/PP2PPPP/RNBQKBNR w KQkq -",
+      "eco": "E15",
+      "opening_name": "Queen's Indian Defense",
+      "variation_name": "1.d4 Nf6 2.c4 e6 (without Nc3)",
+      "strategic_ideas": [
+        "If White plays 3.Nf3 instead of 3.Nc3, Black can play the Queen's Indian (3...b6).",
+        "The Queen's Indian is a hypermodern defense — Black controls the center from afar with the fianchettoed bishop.",
+        "White often avoids the Nimzo by playing 3.Nf3, so knowing the Queen's Indian is essential for Nimzo players."
+      ],
+      "main_line_moves": ["b6", "Bb4+", "Be7"],
+      "candidate_explanations": {
+        "b6": {
+          "label": "Queen's Indian Defense",
+          "prose": "Black prepares Bb7, controlling e4 from the flank. A classical hypermodern concept — let White build the center, then undermine it. Popularized by Nimzowitsch and Réti.",
+          "follow_up_idea": "After 4.g3 Bb7 5.Bg2 Be7 6.O-O O-O 7.Nc3 Ne4 (main line) or 4.e3 Bb7 5.Bd3 d5 (classical) White has various plans. The key: can Black's bishops control the center enough?"
+        }
+      },
+      "tags": ["queens-indian", "d4", "indian"]
+    },
+    {
+      "fen_key": "rnbqkb1r/pppppp1p/5np1/8/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq -",
+      "eco": "E60",
+      "opening_name": "King's Indian Defense",
+      "variation_name": "1.d4 Nf6 2.c4 g6 3.Nc3",
+      "strategic_ideas": [
+        "Black is building the King's Indian setup: g6, Bg7, d6, O-O, with a later ...e5 or ...c5.",
+        "The King's Indian is one of the most dynamic and counterattacking openings. Black gives White the center to later attack it.",
+        "Famous King's Indian players: Fischer, Kasparov, Bronstein — it suits bold, attacking styles."
+      ],
+      "main_line_moves": ["Bg7", "d6"],
+      "candidate_explanations": {
+        "Bg7": {
+          "label": "King's Indian — Fianchetto",
+          "prose": "The bishop on g7 will become a powerful long-range weapon once the center opens. After ...d6, ...O-O, ...Nbd7 and ...e5 Black will challenge White's center.",
+          "follow_up_idea": "After 3...Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 (Classical KID) or 6.Be2 e5 7.d5 (Closed KID) — Black will counterattack with ...Nf6-h5-f4 or ...f5."
+        }
+      },
+      "tags": ["kings-indian", "d4", "indian"]
+    },
+    {
+      "fen_key": "rnbqk2r/ppp1ppbp/3p1np1/8/2PPP3/2N5/PP3PPP/R1BQKBNR b KQkq -",
+      "eco": "E60",
+      "opening_name": "King's Indian Defense",
+      "variation_name": "Classical — 4.e4",
+      "strategic_ideas": [
+        "White has built the ideal center with pawns on d4, c4, e4. Black has the King's Indian setup and must now decide how to fight back.",
+        "The critical question: does Black play ...e5 (Classical KID), ...c5 (Modern Benoni setup), or wait with ...O-O first?",
+        "The Classical KID (5.Nf3 O-O 6.Be2 e5 7.O-O) is White's most principled response — maintain the center and develop harmoniously."
+      ],
+      "main_line_moves": ["d6", "O-O"],
+      "candidate_explanations": {
+        "d6": {
+          "label": "Main Setup",
+          "prose": "Completing the King's Indian structure. After 5.Nf3 O-O 6.Be2 e5 7.d5 (Closed KID) White pushes d5, gaining queenside space, while Black will attack with ...Ne8-d6 or ...Nh5-f4 on the kingside.",
+          "follow_up_idea": "The Classical KID tabiya after 7.O-O Nc6 8.d5 Ne7 9.b4 — White's queenside attack (a4, b5) races against Black's kingside attack (...Nh5, ...f5, ...f4). Pure chess!"
+        }
+      },
+      "tags": ["kings-indian", "classical-kid"]
+    },
+    {
+      "fen_key": "rnbqkb1r/ppp1pp1p/5np1/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq -",
+      "eco": "D80",
+      "opening_name": "Grünfeld Defense",
+      "variation_name": "1.d4 Nf6 2.c4 g6 3.Nc3 d5",
+      "strategic_ideas": [
+        "The Grünfeld! Black plays ...d5 immediately, inviting White to build a strong center — which Black will then attack.",
+        "After 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4 White has a massive center. Black's plan: attack it with ...c5, ...Nc6, ...cxd4.",
+        "The g7 bishop will be a devastating long-range weapon if the center collapses. Deep and razor-sharp."
+      ],
+      "main_line_moves": ["cxd5", "e4"],
+      "candidate_explanations": {
+        "cxd5": {
+          "label": "Exchange Grünfeld",
+          "prose": "White accepts the challenge and builds the center. After 4...Nxd5 5.e4 Nxc3 6.bxc3 Bg7 Black must immediately start attacking the center. This is the most critical test of the Grünfeld.",
+          "follow_up_idea": "After the main line 7.Bc4 c5 8.Ne2 Nc6 9.Be3 O-O 10.O-O White has a massive center but Black's pieces are extremely active. Kasparov used the Grünfeld frequently and achieved great results."
+        }
+      },
+      "tags": ["grunfeld", "d4", "indian"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp2pppp/2p5/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq -",
+      "eco": "D43",
+      "opening_name": "Slav Defense",
+      "variation_name": "1.d4 d5 2.c4 c6 3.Nc3",
+      "strategic_ideas": [
+        "The Slav is modern and fighting. Black defends d5 with a pawn while keeping the c8 bishop free (unlike QGD).",
+        "The Semi-Slav (3...e6 + ...Nf6) is one of the most complex and richly analyzed systems in chess.",
+        "Key systems: Semi-Slav (3...Nf6 4.Nf3 e6), Classical Slav (3...Nf6 4.Nf3 dxc4), Moscow Variation (3...Nf6 4.Ng5)."
+      ],
+      "main_line_moves": ["Nf6", "e6", "dxc4"],
+      "candidate_explanations": {
+        "Nf6": {
+          "label": "Main Line Slav",
+          "prose": "Developing naturally. Now White plays 4.Nf3 and Black must decide: Semi-Slav (4...e6), Classical Slav (4...dxc4 5.a4 Bf5), or Chebanenko (4...a6).",
+          "follow_up_idea": "The Semi-Slav (4.Nf3 e6) can lead to the Meran (5.e3 Nbd7 6.Bd3 dxc4 7.Bxc4 b5), Botvinnik (5.Bg5 dxc4 6.e4 — extremely sharp), or Anti-Meran (5.Ng5 — the Moscow Attack)."
+        }
+      },
+      "tags": ["slav", "queens-gambit", "d4"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pppppppp/8/8/2P5/8/PP1PPPPP/RNBQKBNR b KQkq -",
+      "eco": "A10",
+      "opening_name": "English Opening",
+      "variation_name": "1.c4",
+      "strategic_ideas": [
+        "The English Opening — a hypermodern flank opening. White controls d5 from the flank without occupying the center with pawns.",
+        "The English often transposes to other openings (1.c4 e5 → Reversed Sicilian, 1.c4 c5 → Symmetrical English, 1.c4 Nf6 2.Nc3 d5 3.d4 → Queen's Gambit).",
+        "White's plan: fianchetto the kingside bishop, develop Nc3, then strike in the center with d4 or e4."
+      ],
+      "main_line_moves": ["e5", "c5", "Nf6", "e6"],
+      "candidate_explanations": {
+        "e5": {
+          "label": "Reversed Sicilian",
+          "prose": "The most popular reply. Black occupies the center while White has a 'reversed Sicilian' — a Sicilian where Black has the extra tempo. After 2.Nc3 Nf6 3.g3 d5 4.cxd5 Nxd5 5.Bg2 Black has active play.",
+          "follow_up_idea": "After 1.c4 e5 2.Nc3 Nf6 3.g3 (Classical English) or 2.g3 (simpler) White will fianchetto and play d3, Nf3. Black has a solid center but White has queenside pressure."
+        },
+        "c5": {
+          "label": "Symmetrical English",
+          "prose": "Perfect symmetry — both sides have the same setup. After 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Nf3 Nf6 6.O-O O-O the game is balanced and strategic.",
+          "follow_up_idea": "White can try to break symmetry with d4 (entering the Tarrasch or Panov type positions) or maintain the English character with b3, Bb2, and slow queenside expansion."
+        }
+      },
+      "tags": ["english", "flank"]
+    },
+    {
+      "fen_key": "rnbqkb1r/ppp1pppp/5n2/3p4/3P4/2N5/PPP1PPPP/R1BQKBNR w KQkq -",
+      "eco": "D02",
+      "opening_name": "London System",
+      "variation_name": "1.d4 Nf6 2.Nf3 d5 3.Nc3 (or 2.Bf4)",
+      "strategic_ideas": [
+        "The London System is one of the most solid and reliable setups for White. White develops Nf3, Bf4 (or Bg5), e3, Nbd2, and c3.",
+        "The London is virtually theory-free and leads to solid, risk-free positions. Very popular at club level and increasingly at top level.",
+        "White's plan: develop solidly, castle kingside, then decide whether to play for e4 expansion or a slow queenside buildup."
+      ],
+      "main_line_moves": ["Bf4", "Bg5", "e3"],
+      "candidate_explanations": {
+        "Bf4": {
+          "label": "London System (Main)",
+          "prose": "The London bishop development. White will follow with e3, Nbd2, c3, and Bd3. After that, O-O and Ne5 or e4 are typical plans.",
+          "follow_up_idea": "After 1.d4 Nf6 2.Nf3 d5 3.Bf4 e6 4.e3 Bd6 5.Bg3 O-O 6.Nbd2 c5 7.c3 Nc6 8.Bd3 is the main London tabiya. White threatens Ne5; Black counterattacks with ...c4 or ...Bxg3."
+        }
+      },
+      "tags": ["london", "d4", "flank"]
+    },
+    {
+      "fen_key": "rnbqkbnr/ppp1pppp/8/3p4/3P4/5N2/PPP1PPPP/RNBQKB1R b KQkq -",
+      "eco": "D02",
+      "opening_name": "London System / Torre Attack",
+      "variation_name": "1.d4 d5 2.Nf3",
+      "strategic_ideas": [
+        "White develops the knight first. Can lead to the London System (3.Bf4), Torre Attack (3.Bg5), or transition to the Queen's Gambit (3.c4).",
+        "The London/Torre is a solid, reliable weapon that avoids most of Black's theoretical weapons."
+      ],
+      "main_line_moves": ["Nf6", "e6", "c5"],
+      "candidate_explanations": {
+        "Nf6": {
+          "label": "Main Development",
+          "prose": "The most natural move. Now 3.Bf4 enters the London, 3.Bg5 enters the Torre Attack, 3.c4 enters the Queen's Gambit.",
+          "follow_up_idea": "The London System (3.Bf4) is the most popular at club level. The Torre Attack (3.Bg5 e6 4.e3 Be7 5.Nbd2 O-O 6.c3 c5 7.Bd3) is another solid system."
+        }
+      },
+      "tags": ["london", "d4"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pppp1ppp/4p3/8/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq -",
+      "eco": "C25",
+      "opening_name": "Vienna Game",
+      "variation_name": "1.e4 e5 2.Nc3",
+      "strategic_ideas": [
+        "The Vienna Game — White develops the knight before committing to Nf3 (which can then be saved for a useful moment). Often followed by f4 (Vienna Gambit).",
+        "The Vienna is slower than 2.Nf3 but more flexible. White can transpose to many structures.",
+        "2.Nc3 e5 positions often lead to the Vienna Gambit (3.f4) or the peaceful Vienna Game (3.g3)."
+      ],
+      "main_line_moves": ["Nf6", "Nc6", "Bc5"],
+      "candidate_explanations": {
+        "Nf6": {
+          "label": "Most Active Reply",
+          "prose": "Attacks e4 immediately. After 3.f4 (Vienna Gambit) or 3.Bc4 (Bishop's Vienna) or 3.g3 (Modern Vienna) — each leads to different types of positions.",
+          "follow_up_idea": "After 2...Nf6 3.f4 d5! 4.fxe5 Nxe4 5.Nf3 (or 5.Qf3) Black has active counterplay. The Vienna Gambit with 3.f4 is a dangerous weapon if Black is unprepared."
+        }
+      },
+      "tags": ["vienna", "open-game"]
+    },
+    {
+      "fen_key": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+      "eco": "C54",
+      "opening_name": "Italian Game — Giuoco Piano",
+      "variation_name": "3.Bc4 Bc5 4.Nf3 Nc6",
+      "strategic_ideas": [
+        "Both sides have mirrored development. White will play c3 and d4 to build a center, or Nc3 and d4.",
+        "Modern Italian theory is incredibly rich — top players have spent thousands of hours on these positions.",
+        "White's plan: c3, d4 (or Nc3, d4) to open the center and activate the c4 bishop. Black: maintain pressure on e4, prepare ...d5."
+      ],
+      "main_line_moves": ["c3", "O-O", "d4"],
+      "candidate_explanations": {
+        "c3": {
+          "label": "Giuoco Piano — Main",
+          "prose": "Prepares d4. After 4...Nf6 5.d4 exd4 6.cxd4 Bb4+ 7.Nc3 the position becomes sharp and White's bishop pair vs Black's active pieces is the key battle.",
+          "follow_up_idea": "After 5.d4 exd4 6.cxd4 Bb4+ 7.Nc3 Nxe4 8.O-O Bxc3 9.d5 Ne5 10.bxc3 Nxc4 11.Qd4 — sharp tactical play. Or the quieter 5.d3 d6 6.O-O O-O 7.Bb3 (closed Italian)."
+        },
+        "O-O": {
+          "label": "Castles First",
+          "prose": "Completing development before committing to d4. After 5.d4 exd4 6.cxd4 Bb4+ (or 5...Bb6 holding the bishop) the game stays rich. Modern players often prefer the slow buildup.",
+          "follow_up_idea": "The closed Italian (5.d3 d6 6.c3 a6 7.Bb3 Ba7 8.Nbd2) is the most popular setup in modern Italian theory. White slowly builds without opening the game prematurely."
+        }
+      },
+      "tags": ["italian", "giuoco-piano"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp1ppppp/2p5/8/3P4/2N5/PPP1PPPP/R1BQKBNR b KQkq -",
+      "eco": "A40",
+      "opening_name": "Caro-Kann / Semi-Slav Territory",
+      "variation_name": "1.d4 c6 2.Nc3",
+      "strategic_ideas": [
+        "Black played 1...c6 after 1.d4 — an unusual move order that can transpose to the Caro-Kann (after 2.e4 d5) or the Semi-Slav (after 2.c4 d5 3.Nc3 Nf6 4.Nf3 e6).",
+        "White plays 2.Nc3 to head toward normal d4 systems while keeping flexibility."
+      ],
+      "main_line_moves": ["d5", "Nf6"],
+      "candidate_explanations": {
+        "d5": {
+          "label": "Slav-like Structure",
+          "prose": "Black establishes the Slav pawn structure. After 3.e4 we get a Caro-Kann by transposition. After 3.Nf3 Nf6 4.e3 Bg4 we get a solid semi-open system.",
+          "follow_up_idea": "This move order is often used by Caro-Kann players who want to avoid certain White deviations on move 1."
+        }
+      },
+      "tags": ["caro-kann", "slav", "move-order"]
+    },
+    {
+      "fen_key": "rnbqkb1r/pp2pppp/3p1n2/2pP4/2P5/2N5/PP2PPPP/R1BQKBNR b KQkq -",
+      "eco": "A65",
+      "opening_name": "Modern Benoni",
+      "variation_name": "1.d4 Nf6 2.c4 c5 3.d5 d6 4.Nc3",
+      "strategic_ideas": [
+        "The Modern Benoni is a highly dynamic and unbalanced defense. Black allows White a pawn majority on the queenside in exchange for a strong e5 square and queenside counterplay.",
+        "Black's pieces flow naturally: Bg7 controls the long diagonal, ...e6 and ...exd5 opens the game, ...b5 is the typical queenside break.",
+        "White's plan: advance the queenside majority with a4-b4-b5. Black's plan: ...b5 first, and use the e5 square."
+      ],
+      "main_line_moves": ["g6", "e6"],
+      "candidate_explanations": {
+        "g6": {
+          "label": "Classical Benoni",
+          "prose": "Black fianchettoes and prepares the main Benoni structure. After 4.e4 Bg7 5.f4 O-O 6.Nf3 e6 7.Be2 exd5 8.cxd5 Re8 9.e5 is the main line — very sharp.",
+          "follow_up_idea": "The Four Pawns Attack (4.e4 g6 5.f4) is the most aggressive test. After 7.Be2 exd5 8.cxd5 Re8 9.e5 White's pawn storm can be dangerous. Black counterattacks with ...b5 and ...Ne4."
+        }
+      },
+      "tags": ["benoni", "d4", "modern-benoni"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp1ppppp/8/2p5/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -",
+      "eco": "A50",
+      "opening_name": "Benko Gambit Territory",
+      "variation_name": "1.d4 Nf6 2.c4 c5 — alternative: Benko",
+      "strategic_ideas": [
+        "After 1.d4 Nf6 2.c4 c5 3.d5 Black can play the Modern Benoni (3...d6) or the Benko Gambit (3...b5).",
+        "The Benko Gambit sacrifices a pawn for long-term positional pressure on the queenside a-file and b-file.",
+        "The Benko is famous for being an easy-to-play practical weapon — Black's queenside pressure is automatic."
+      ],
+      "main_line_moves": ["d5"],
+      "candidate_explanations": {
+        "d5": {
+          "label": "White Advances",
+          "prose": "After 3.d5 b5! (Benko Gambit) or 3...d6 (Modern Benoni) or 3...e6 (Czech Benoni) — Black has multiple fighting options.",
+          "follow_up_idea": "The Benko Gambit (3...b5 4.cxb5 a6) is one of the most popular club-level weapons. After 5.bxa6 Bxa6 6.Nc3 g6 Black gets lasting queenside pressure."
+        }
+      },
+      "tags": ["benoni", "benko"]
+    },
+    {
+      "fen_key": "rnbqkb1r/pppppp1p/5np1/8/3P4/2N2N2/PPP1PPPP/R1BQKB1R b KQkq -",
+      "eco": "A48",
+      "opening_name": "King's Indian Setup — Against d4 without c4",
+      "variation_name": "1.d4 Nf6 2.Nf3 g6 3.Nc3",
+      "strategic_ideas": [
+        "Black is building the King's Indian setup but White has avoided c4, staying in Torre/London territory.",
+        "Without c4, White's position is less space-claiming but more solid. Black develops naturally with Bg7, d6, O-O.",
+        "If White eventually plays c4, we transpose to King's Indian proper."
+      ],
+      "main_line_moves": ["Bg7", "d6"],
+      "candidate_explanations": {
+        "Bg7": {
+          "label": "Completing the Fianchetto",
+          "prose": "Black completes the kingside fianchetto. After 4.e4 d6 5.Be2 we enter a King's Indian where White has avoided the most theoretical main lines.",
+          "follow_up_idea": "After 3...Bg7 4.e4 d6 5.Be2 O-O 6.O-O e5 — we're in a King's Indian Averbakh or Classical system without the most theoretical lines."
+        }
+      },
+      "tags": ["kings-indian", "d4"]
+    },
+    {
+      "fen_key": "rnbqkb1r/pp1ppppp/2p2n2/8/2P1P3/2N5/PP1P1PPP/R1BQKBNR b KQkq -",
+      "eco": "B41",
+      "opening_name": "Sicilian Kan / Taimanov",
+      "variation_name": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 a6 / Nc6",
+      "strategic_ideas": [
+        "The Sicilian with ...e6 and ...a6 is known as the Kan (or Paulsen). It's flexible — Black avoids committing the knight early.",
+        "The Taimanov (1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 Nc6) develops the knight. Both systems are solid.",
+        "Black's structure is very flexible: can play ...d6 (Scheveningen), ...d5 (counter-center), or maintain ...e6+d6."
+      ],
+      "main_line_moves": ["a6", "Nc6"],
+      "candidate_explanations": {
+        "a6": {
+          "label": "Kan Variation",
+          "prose": "The Kan (Paulsen) Sicilian. Black keeps flexibility — the knight can go to c6 or d7. After 5.Nc3 Qc7 or 5.Bd3 Nf6 6.O-O Nc6 Black has a solid, flexible structure.",
+          "follow_up_idea": "The Kan is a universal system that avoids most forcing lines. Black can transpose to the Scheveningen, Taimanov, or even Najdorf structures. A practical, reliable choice."
+        },
+        "Nc6": {
+          "label": "Taimanov Variation",
+          "prose": "Develops the knight naturally. The Taimanov is solid and somewhat more committing than the Kan. After 5.Nc3 Qc7 or 5.Nc3 d6 6.Be3 a6 we get rich Taimanov positions.",
+          "follow_up_idea": "The Taimanov is popular because it's solid but active. Black can use ...Bb4 to pin White's knight (similar to the Nimzo-Indian concept) at the right moment."
+        }
+      },
+      "tags": ["sicilian", "kan", "taimanov"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pp1p1ppp/4p3/2p5/4P3/2P5/PP1P1PPP/RNBQKBNR b KQkq -",
+      "eco": "B22",
+      "opening_name": "Sicilian — Alapin Variation",
+      "variation_name": "1.e4 c5 2.c3",
+      "strategic_ideas": [
+        "The Alapin Variation (2.c3) prepares d4 without allowing the Open Sicilian. A popular way to avoid Sicilian theory.",
+        "After 2...d5 or 2...Nf6 Black has active counterplay. The Alapin leads to solid, slightly less theoretical positions.",
+        "White's plan: play d4 to build a strong center, then develop naturally."
+      ],
+      "main_line_moves": ["d5", "Nf6", "e6"],
+      "candidate_explanations": {
+        "d5": {
+          "label": "Most Active Reply",
+          "prose": "Immediately challenges the center. After 3.exd5 Qxd5 4.d4 Nf6 5.Nf3 e6 6.Be2 or 3.exd5 Qxd5 4.d4 cxd4 5.cxd4 Nc6 — Black has active play.",
+          "follow_up_idea": "After 2...d5 3.exd5 Qxd5 4.d4 Nf6 5.Nf3 e6 6.Be2 the game resembles a reversed Caro-Kann. Black is fine with normal development."
+        },
+        "Nf6": {
+          "label": "Dynamic Knight Move",
+          "prose": "After 3.e5 Nd5 4.d4 cxd4 5.Nf3 e6 6.cxd4 d6 7.Bc4 Nb6 8.Bb3 Black gets active play against White's center.",
+          "follow_up_idea": "The Alapin can become sharp after 2...Nf6 3.e5 Nd5 4.d4 cxd4 5.cxd4 d6 6.Nf3 Nc6 7.Bc4 — White has the center, Black attacks it immediately with ...dxe5 and ...e6."
+        }
+      },
+      "tags": ["sicilian", "alapin"]
+    },
+    {
+      "fen_key": "r1bqk2r/pp1nbppp/2pp1n2/4p3/2BPP3/2N2N2/PPP2PPP/R1BQ1RK1 b kq -",
+      "eco": "C97",
+      "opening_name": "Ruy Lopez — Closed",
+      "variation_name": "Main Line Tabiya after 9.h3",
+      "strategic_ideas": [
+        "The main line Ruy Lopez tabiya. White has played 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 O-O 8.c3 d6 9.h3.",
+        "White's plan: Play d4 to challenge Black's e5 pawn. The h3 prevents ...Bg4 which would pin the Nf3.",
+        "Black's plan: The Chigorin Defense (9...Na5 10.Bc2 c5) or the Breyer (9...Nb8) or Zaitsev (9...Bb7) are the main systems."
+      ],
+      "main_line_moves": ["Na5", "Nb8", "Bb7"],
+      "candidate_explanations": {
+        "Na5": {
+          "label": "Chigorin Defense",
+          "prose": "The knight goes to the rim to attack the bishop and support ...c5. After 10.Bc2 c5 11.d4 Qc7 Black has a rich position fighting for the center. One of the most popular Ruy Lopez systems.",
+          "follow_up_idea": "After 10.Bc2 c5 11.d4 Qc7 12.Nbd2 cxd4 13.cxd4 Nc6 14.Nb3 — complex maneuvering chess. White pushes the center; Black counterattacks with ...b4 or ...c4 at the right moment."
+        },
+        "Nb8": {
+          "label": "Breyer Defense",
+          "prose": "The famous Breyer retreat — the knight goes back to b8 to reroute to d7 and support the center. A deep positional concept. One of Bobby Fischer's favorite systems.",
+          "follow_up_idea": "After 9...Nb8 10.d4 Nbd7 11.Nbd2 Bb7 12.Bc2 Re8 Black builds a flexible position. The knight will go c5 or e5 to challenge White's strong d4 pawn."
+        },
+        "Bb7": {
+          "label": "Zaitsev System",
+          "prose": "Immediately activates the bishop with the idea of ...Re8 and then ...Bf8 to free the rook. A modern system favored by Karpov and Anand.",
+          "follow_up_idea": "After 9...Bb7 10.d4 Re8 11.Nbd2 Bf8 12.a4 h6 13.Bc2 exd4 14.cxd4 Nb4 15.Bb1 c5 is the Zaitsev main line — extremely complex theory."
+        }
+      },
+      "tags": ["ruy-lopez", "main-line", "closed-ruy"]
+    },
+    {
+      "fen_key": "r1bqkb1r/pp3ppp/2np1n2/1B2p3/3PP3/2N2N2/PPP2PPP/R1BQ1RK1 b kq -",
+      "eco": "C80",
+      "opening_name": "Ruy Lopez — Open Defense",
+      "variation_name": "3.Bb5 a6 4.Ba4 Nf6 5.O-O Nxe4",
+      "strategic_ideas": [
+        "The Open Ruy Lopez. Black has grabbed the e4 pawn! This looks risky but is theoretically sound.",
+        "After 6.d4 b5 7.Bb3 d5 8.dxe5 Be6 Black has captured the center pawn and is fighting back. Very sharp and dynamic.",
+        "The Open Ruy is fashionable at top level — it requires precise play from both sides."
+      ],
+      "main_line_moves": ["b5", "d5"],
+      "candidate_explanations": {
+        "b5": {
+          "label": "Main Open Ruy Line",
+          "prose": "After 5...Nxe4 6.d4 b5 7.Bb3 d5 8.dxe5 Be6 Black is fighting for the center actively. White has compensation in the form of the strong e5 pawn and active pieces.",
+          "follow_up_idea": "After 8.dxe5 Be6 9.c3 Bc5 10.Nbd2 O-O 11.Bc2 Nxf2!? (the Dilworth Attack) is a fascinating piece sacrifice. Main line: 9.c3 Nc5 10.Bc2 Bg4."
+        }
+      },
+      "tags": ["ruy-lopez", "open-defense"]
+    },
+    {
+      "fen_key": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+      "eco": "C53",
+      "opening_name": "Italian Game — Giuoco Piano",
+      "variation_name": "3.Bc4 Bc5 — Classical Italian",
+      "strategic_ideas": [
+        "The Giuoco Piano (Quiet Game). Both sides have their bishops pointing at the opponent's kingside.",
+        "White can play 4.c3 (preparing d4), 4.d3 (slow Italian), 4.Nc3 (Three Knights), or 4.b4 (Evans Gambit!).",
+        "Modern Italian theory at top level is extremely deep — Magnus Carlsen has used this with great success."
+      ],
+      "main_line_moves": ["c3", "d3", "Nc3", "b4"],
+      "candidate_explanations": {
+        "c3": {
+          "label": "Main Line — Prepare d4",
+          "prose": "White prepares the d4 advance. After 4...Nf6 5.d4 exd4 6.cxd4 Bb4+ 7.Nc3 the position becomes very sharp.",
+          "follow_up_idea": "After 4.c3 Nf6 5.d4 exd4 6.cxd4 Bb4+ 7.Nc3 Nxe4 8.O-O Bxc3 9.d5 is the 'fried liver' of the Giuoco Piano — Black gives up the bishop pair for activity."
+        },
+        "d3": {
+          "label": "Slow Italian / Closed Italian",
+          "prose": "The modern approach — White avoids opening the center immediately, instead building slowly with Nc3, O-O, a3, Ba2 or Bb3. This is the most popular top-level approach now.",
+          "follow_up_idea": "After 4.d3 Nf6 5.O-O O-O 6.c3 d6 7.a4 a5 8.Nbd2 Ba7 — a slow maneuvering game where White plans Ne1, f3, Ng2/f4 for a kingside attack."
+        },
+        "b4": {
+          "label": "Evans Gambit",
+          "prose": "The brilliant Evans Gambit! White sacrifices a pawn to gain rapid development and attacking chances. Played in the Romantic era by brilliant attackers. Kasparov revived it against Anand in 1995.",
+          "follow_up_idea": "After 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O dxc3 8.Qb3! White has a massive attack. Black must be very precise. The Evans leads to wild, brilliant positions."
+        }
+      },
+      "tags": ["italian", "giuoco-piano", "evans-gambit"]
+    },
+    {
+      "fen_key": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/3P4/PPP2PPP/RNBQKBNR b KQkq -",
+      "eco": "C41",
+      "opening_name": "Philidor Defense",
+      "variation_name": "1.e4 e5 2.Nf3 Nc6 / d6",
+      "strategic_ideas": [
+        "White has played the solid 3.d3 — the King's Indian Attack setup. This avoids the main Open Game theory.",
+        "The King's Indian Attack (2.Nf3 followed by d3, Nbd2, g3, Bg2, O-O) is a universal system — White plays the same setup regardless of what Black does.",
+        "White will eventually push e5 or f4 for a kingside attack. Black should counter in the center with ...d5 or ...c5."
+      ],
+      "main_line_moves": ["d6", "Nf6", "Be7"],
+      "candidate_explanations": {
+        "d6": {
+          "label": "Philidor Defense",
+          "prose": "The Philidor — named after the greatest player of the 18th century. Solid but slightly passive. Black defends e5 with a pawn but gives White more central space.",
+          "follow_up_idea": "After 3...d6 4.d4 exd4 5.Nxd4 Nf6 6.Nc3 Be7 7.Be3 O-O 8.Be2 or via the solid 4.Nbd2 Nf6 5.Bc4 Be7 6.O-O — Black has a solid but space-disadvantaged position."
+        }
+      },
+      "tags": ["philidor", "open-game"]
+    },
+    {
+      "fen_key": "r1bqkbnr/pp1ppppp/2n5/8/3pP3/5N2/PPP2PPP/RNBQKB1R w KQkq -",
+      "eco": "C44",
+      "opening_name": "Scotch Game",
+      "variation_name": "3.d4 exd4 4.Nxd4 — White to play",
+      "strategic_ideas": [
+        "The Scotch Game. White has sacrificed the center for active piece play. After 4.Nxd4 Black plays 4...Nf6 (Mieses/Classical) or 4...Bc5 (Classical Scotch).",
+        "The Scotch is an active, somewhat underestimated opening. Kasparov beat Karpov with it repeatedly.",
+        "White avoids the main Ruy Lopez theory while getting dynamic, open positions."
+      ],
+      "main_line_moves": ["Nf6", "Bc5", "Qh4"],
+      "candidate_explanations": {
+        "Nf6": {
+          "label": "Mieses Variation",
+          "prose": "After 4...Nf6 5.Nxc6 bxc6 the position is unique — White has a solid structure, Black has the bishop pair. Often leads to endgame-oriented positions.",
+          "follow_up_idea": "After 5.Nxc6 bxc6 6.e5 Qe7 7.Qe2 Nd5 8.c4 Ba6 9.b3 the game is very maneuvering. Or 5.Nc3 (keeping the knight) — Four Knights Scotch."
+        },
+        "Bc5": {
+          "label": "Classical Scotch",
+          "prose": "The most natural developing move. After 5.Be3 Qf6 6.c3 Nge7 7.Bc4 Ne5 8.Be2 we get rich middlegame play. White often plays 5.Nb3 Bb6 6.Nc3.",
+          "follow_up_idea": "After 4...Bc5 5.Nb3 Bb6 6.Nc3 Nf6 7.Bg5 — the Scotch Classical with Bg5 is a sharp system developed by Kasparov. White threatens Nd5 and maintains central pressure."
+        }
+      },
+      "tags": ["scotch", "open-game", "d4"]
+    },
+    {
+      "fen_key": "rnbqkb1r/ppp2ppp/3p1n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+      "eco": "C61",
+      "opening_name": "Ruy Lopez — Berlin Defense",
+      "variation_name": "3.Bb5 Nf6",
+      "strategic_ideas": [
+        "The Berlin Defense! One of the most solid and theoretically important defenses in modern chess.",
+        "After 4.O-O Nxe4 5.d4 Nd6 6.Bxc6 dxc6 7.dxe5 Nf5 we reach the famous 'Berlin Endgame' where Black's king walks to the center.",
+        "Vladimir Kramnik used the Berlin to defeat Kasparov in 2000 for the World Championship. It remains the top-level equalizer."
+      ],
+      "main_line_moves": ["O-O", "d3", "d4"],
+      "candidate_explanations": {
+        "O-O": {
+          "label": "Main Line — Enter the Berlin",
+          "prose": "After 4.O-O Nxe4 5.d4 Nd6 6.Bxc6 dxc6 7.dxe5 Nf5 8.Qxd8+ Kxd8 we reach the Berlin Endgame — Black's king goes to the center but White has the bishop pair and active play.",
+          "follow_up_idea": "In the Berlin Endgame White has the bishop pair and tries to create a passed pawn. Black has a solid structure and trades pieces. It's been studied to theoretical draws at the top level — but it's very instructive!"
+        },
+        "d3": {
+          "label": "Anti-Berlin 4.d3",
+          "prose": "White avoids the Berlin Endgame. After 4.d3 Bc5 or 4.d3 d6 5.O-O Be7 6.c3 we get a Spanish-like position with a different character.",
+          "follow_up_idea": "After 4.d3 Bc5 5.O-O d6 6.c3 O-O 7.Nbd2 Ne7 8.d4 is the modern anti-Berlin — popularized by Magnus Carlsen. White keeps the game out of the Berlin Endgame."
+        }
+      },
+      "tags": ["ruy-lopez", "berlin-defense"]
+    },
+    {
+      "fen_key": "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq f3",
+      "eco": "C33",
+      "opening_name": "King's Gambit",
+      "variation_name": "2.f4 — King's Gambit",
+      "strategic_ideas": [
+        "The King's Gambit! White sacrifices the f4 pawn to open the f-file and gain rapid development.",
+        "This was the dominant opening of the 19th century. Paul Morphy and Adolf Anderssen used it to produce brilliant attacking games.",
+        "If Black accepts (2...exf4), White opens the f-file for the rook after Nf3 and possibly Bc4 targeting f7."
+      ],
+      "main_line_moves": ["exf4", "Bc5", "d5"],
+      "candidate_explanations": {
+        "exf4": {
+          "label": "King's Gambit Accepted",
+          "prose": "Black accepts the gambit and tries to hold the pawn. After 3.Nf3 g5 (defending the pawn) 4.h4 g4 5.Ne5 (Kieseritzky) or 3.Bc4 (King's Bishop Gambit) White attacks immediately.",
+          "follow_up_idea": "The Fischer Defense (2...exf4 3.Nf3 d6 4.d4 g5) is the modern way to handle the KGA. After 5.Nc3 g4 6.Bc4 gxf3 7.Qxf3 — the game is very sharp. Black keeps the pawn at the cost of weaknesses."
+        },
+        "d5": {
+          "label": "Falkbeer Counter-Gambit",
+          "prose": "Black counter-gambits immediately! After 3.exd5 e4 Black gains space and the e4 pawn is very strong. A dynamic way to fight the King's Gambit without defending passively.",
+          "follow_up_idea": "After 2...d5 3.exd5 e4 4.d3 Nf6 5.dxe4 Nxe4 6.Nf3 Bc5 7.Qe2 Bf5 is the main Falkbeer. Black has excellent piece activity."
+        }
+      },
+      "tags": ["kings-gambit", "gambits", "open-game"]
+    },
+    {
+      "fen_key": "rnbqkbnr/ppp2ppp/4p3/3pp3/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq -",
+      "eco": "D32",
+      "opening_name": "Tarrasch Defense",
+      "variation_name": "QGD with 3...c5",
+      "strategic_ideas": [
+        "The Tarrasch Defense! After 1.d4 d5 2.c4 e6 3.Nc3 c5 Black immediately challenges the center.",
+        "After 4.cxd5 exd5 5.Nf3 Nc6 6.g3 Nf6 7.Bg2 Be7 8.O-O O-O 9.dxc5 Bxc5 Black has an isolated queen pawn (IQP).",
+        "The IQP position: Black has active pieces and attacking chances; White targets the isolated pawn. A classic strategic debate."
+      ],
+      "main_line_moves": ["cxd5", "Nf3"],
+      "candidate_explanations": {
+        "cxd5": {
+          "label": "Accept the Challenge",
+          "prose": "After 4.cxd5 exd5 we reach the Tarrasch with the isolated pawn. Black's strategy: use the active pieces and the d4 square as compensation for the pawn weakness.",
+          "follow_up_idea": "The Tarrasch was championed by Siegbert Tarrasch in the early 1900s. It's been used by Kasparov and Spassky. The IQP positions are instructive for understanding piece activity vs. pawn weaknesses."
+        }
+      },
+      "tags": ["tarrasch", "queens-gambit", "IQP"]
+    },
+    {
+      "fen_key": "rn1qkb1r/pb1p1ppp/1p2pn2/2p5/2PP4/2N1PN2/PP3PPP/R1BQKB1R w KQkq -",
+      "eco": "E25",
+      "opening_name": "Nimzo-Indian — Sämisch Variation",
+      "variation_name": "4.a3 Bxc3+ 5.bxc3 c5",
+      "strategic_ideas": [
+        "The Sämisch Nimzo-Indian. After 4.a3 Bxc3+ 5.bxc3 White has doubled pawns but the bishop pair.",
+        "White's main plan: use the bishop pair and play e4 to dominate the center. Black attacks White's weak c3 and c4 pawns.",
+        "After 5...c5 (the most critical) 6.e3 Nc6 7.Bd3 O-O 8.Ne2 b6 or 5...d5 6.cxd5 exd5 7.e3 — complex positions."
+      ],
+      "main_line_moves": ["e3", "f3"],
+      "candidate_explanations": {
+        "e3": {
+          "label": "Sämisch — Solid Approach",
+          "prose": "White plays solidly and develops. After 6.e3 Nc6 7.Bd3 the bishop pair compensates for the doubled pawns. White aims for Nf3, O-O, and eventually f3 and e4.",
+          "follow_up_idea": "After 6.e3 Nc6 7.Bd3 O-O 8.Ne2 b6 9.e4 Ne8 10.O-O Ba6 11.f3 — White's center is powerful but Black's queenside pressure with ...Ba6 and ...cxd4 is real."
+        },
+        "f3": {
+          "label": "Sämisch — Aggressive Approach",
+          "prose": "White immediately prepares e4 with the aggressive f3. After 6.f3 d5 7.cxd5 Nxd5 8.dxc5 Qa5 9.e4 Nxc3 — sharp tactical play where both sides are attacking.",
+          "follow_up_idea": "The Sämisch f3 variation is very sharp and requires precise play. White wants to build with e4-e5 attacking the kingside; Black's queenside counterplay with ...Qa5 and knight maneuvers is immediate."
+        }
+      },
+      "tags": ["nimzo-indian", "samisch", "d4"]
+    },
+    {
+      "fen_key": "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -",
+      "eco": "C40",
+      "opening_name": "Petrov Defense",
+      "variation_name": "1.e4 e5 2.Nf3 Nf6",
+      "strategic_ideas": [
+        "The Petrov Defense (or Russian Game). Black counterattacks the e4 pawn rather than defending e5.",
+        "After 3.Nxe5 d6 4.Nf3 Nxe4 the position is symmetrical. The Petrov is famous for being drawish at the top level — but Black does have active counterplay.",
+        "Carlsen, Kramnik, and Anand have all used the Petrov as a reliable equalizer."
+      ],
+      "main_line_moves": ["Nxe5", "d3", "Nc3"],
+      "candidate_explanations": {
+        "Nxe5": {
+          "label": "Main Line — Accept the Symmetry",
+          "prose": "After 3.Nxe5 d6 4.Nf3 Nxe4 5.d4 d5 6.Bd3 Nc6 7.O-O Be7 8.Re1 Bg4 the Petrov leads to double-edged positions where Black has solved the opening problems.",
+          "follow_up_idea": "After 3.Nxe5 d6 4.Nf3 Nxe4 5.d4 d5 6.Bd3 Be7 7.O-O Nc6 8.Re1 Bg4 9.c3 is the main Petrov tabiya. White has a slight space advantage but Black is very solid."
+        },
+        "d3": {
+          "label": "Quiet System — Avoid Symmetry",
+          "prose": "White avoids the main Petrov symmetry by playing 3.d3 — keeping the game more positional. After 3...Nc6 4.Nbd2 or 3...d6 4.Nbd2 White builds slowly.",
+          "follow_up_idea": "The 3.d3 system against the Petrov is increasingly popular as White tries to maintain slight pressure without entering the symmetrical main lines that are theoretically drawn."
+        }
+      },
+      "tags": ["petrov", "open-game"]
+    }
+  ]
+}
