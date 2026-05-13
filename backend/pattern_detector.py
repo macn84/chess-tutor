@@ -27,10 +27,13 @@ def detect_patterns(analyzed_games: list[dict], username: str) -> dict:
     severity_totals: dict[str, int] = {"blunder": 0, "mistake": 0, "inaccuracy": 0}
     total_cp_loss = 0.0
 
-    # opening_key -> {games, wins, total_cp_loss, blunders: list}
-    opening_map: dict[str, dict] = defaultdict(lambda: {
+    # (color, player_move_1, opponent_move_1) -> stat bucket
+    opening_map: dict[tuple[str, str, str], dict] = defaultdict(lambda: {
         "eco": "",
         "opening_name": "",
+        "color": "",
+        "player_move_1": "",
+        "opponent_move_1": "",
         "games": 0,
         "wins": 0,
         "total_cp_loss": 0.0,
@@ -40,13 +43,19 @@ def detect_patterns(analyzed_games: list[dict], username: str) -> dict:
     move_number_counts: dict[int, int] = defaultdict(int)
 
     for game in analyzed_games:
-        eco = game.get("eco", "") or "?"
-        oname = game.get("opening_name", "") or "Unknown"
-        key = eco if eco != "?" else oname
+        eco = game.get("eco", "") or ""
+        oname = game.get("opening_name", "") or ""
+        color = game.get("color", "white")
+        pm1 = game.get("player_move_1", "")
+        om1 = game.get("opponent_move_1", "")
+        key = (color, pm1 or eco or oname, om1)
 
         entry = opening_map[key]
         entry["eco"] = eco
         entry["opening_name"] = oname
+        entry["color"] = color
+        entry["player_move_1"] = pm1
+        entry["opponent_move_1"] = om1
         entry["games"] += 1
         if game["result"] == "win":
             entry["wins"] += 1
@@ -85,6 +94,9 @@ def detect_patterns(analyzed_games: list[dict], username: str) -> dict:
         opening_stats.append({
             "eco": data["eco"],
             "opening_name": data["opening_name"],
+            "color": data["color"],
+            "player_move_1": data["player_move_1"],
+            "opponent_move_1": data["opponent_move_1"],
             "games": n,
             "wins": data["wins"],
             "win_rate": round(data["wins"] / n * 100, 1) if n else 0,

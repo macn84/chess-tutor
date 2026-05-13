@@ -140,6 +140,9 @@ export interface MistakeRecord {
 export interface OpeningStat {
   eco: string;
   opening_name: string;
+  color: 'white' | 'black';
+  player_move_1: string;
+  opponent_move_1: string;
   games: number;
   wins: number;
   win_rate: number;

@@ -120,6 +120,21 @@ def _analyze_single_game(game_summary: dict, username: str) -> dict:
     color_str = game_summary.get("color", "white")
     player_color = chess.WHITE if color_str == "white" else chess.BLACK
 
+    # Extract first moves for both sides before the analysis loop
+    _first_moves: list[tuple[chess.Color, str]] = []
+    _preview_board = game.board()
+    for _node in game.mainline():
+        if len(_first_moves) >= 2:
+            break
+        _san = _preview_board.san(_node.move)
+        _first_moves.append((_preview_board.turn, _san))
+        _preview_board.push(_node.move)
+
+    white_move_1 = next((s for c, s in _first_moves if c == chess.WHITE), "")
+    black_move_1 = next((s for c, s in _first_moves if c == chess.BLACK), "")
+    player_move_1 = white_move_1 if player_color == chess.WHITE else black_move_1
+    opponent_move_1 = black_move_1 if player_color == chess.WHITE else white_move_1
+
     board = game.board()
     mistakes: list[dict] = []
     phase_mistakes: dict[str, int] = {"opening": 0, "middlegame": 0, "endgame": 0}
@@ -187,6 +202,8 @@ def _analyze_single_game(game_summary: dict, username: str) -> dict:
         "eco": game_summary.get("eco", ""),
         "opening_name": game_summary.get("opening_name", ""),
         "color": color_str,
+        "player_move_1": player_move_1,
+        "opponent_move_1": opponent_move_1,
         "result": game_summary.get("result", ""),
         "white_username": game_summary.get("white_username", ""),
         "black_username": game_summary.get("black_username", ""),

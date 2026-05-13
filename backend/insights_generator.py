@@ -42,6 +42,11 @@ Training tip: <specific, actionable advice>
 Be direct and specific. Reference move numbers, openings, or game phases mentioned in the data. \
 Avoid generic advice like "study tactics" — tie every recommendation to the actual data provided.
 
+IMPORTANT: The opening data is split into "as_white" and "as_black". Never describe a \
+"as_black" opening as something the player opened with — those are openings the player \
+faced as Black. Only attribute an opening as "the player's opening choice" when it appears \
+in "as_white". Describe as_black openings as "when facing X" or "against X".
+
 IMPORTANT: Prioritise RECURRING patterns over single-occurrence events. A mistake made once \
 (even a large cp_loss) is less actionable than a pattern that appears across multiple games. \
 If a blunder move number does not also appear in error_prone_move_numbers, treat it as a \
@@ -76,7 +81,8 @@ def _llm_insights(patterns: dict, analyzed_games: list[dict], api_key: str) -> d
         "mistakes_per_game": patterns["mistakes_per_game"],
         "avg_cp_loss": patterns["avg_cp_loss"],
         "phase_distribution_pct": patterns["phase_distribution"],
-        "most_played_openings": patterns["opening_stats"][:5],
+        "most_played_openings_as_white": [o for o in patterns["opening_stats"] if o.get("color") == "white"][:5],
+        "most_played_openings_as_black": [o for o in patterns["opening_stats"] if o.get("color") == "black"][:5],
         "error_prone_move_numbers": patterns["mistake_move_numbers"][:5],
         "worst_blunders": sample_blunders,
     }
@@ -124,7 +130,9 @@ def _fallback_insights(patterns: dict) -> str:
     phase_dist = patterns["phase_distribution"]
     worst_phase = max(phase_dist, key=lambda p: phase_dist[p]) if phase_dist else "middlegame"
 
-    top_openings = patterns["opening_stats"][:3]
+    white_openings = [o for o in patterns["opening_stats"] if o.get("color") == "white"][:3]
+    black_openings = [o for o in patterns["opening_stats"] if o.get("color") == "black"][:3]
+    top_openings = white_openings or black_openings
     top_blunders = patterns["top_blunders"][:3]
     move_hist = patterns["mistake_move_numbers"][:3]
 
@@ -155,12 +163,13 @@ def _fallback_insights(patterns: dict) -> str:
 
     if top_openings:
         lines.append("**Finding 3: Opening Repertoire Performance**")
+        color_label = "as White" if white_openings else "as Black"
         worst_op = max(top_openings, key=lambda o: o["avg_cp_loss"])
         best_op = min(top_openings, key=lambda o: o["avg_cp_loss"])
         lines.append(
-            f"Your highest cp-loss opening is {worst_op['opening_name']} ({worst_op['eco']}, "
+            f"Your highest cp-loss opening ({color_label}) is {worst_op['opening_name']} ({worst_op['eco']}, "
             f"avg {worst_op['avg_cp_loss']} cp/game, {worst_op['win_rate']}% wins). "
-            f"Your most accurate is {best_op['opening_name']} ({best_op['eco']}, "
+            f"Your most accurate ({color_label}) is {best_op['opening_name']} ({best_op['eco']}, "
             f"avg {best_op['avg_cp_loss']} cp/game)."
         )
         lines.append(

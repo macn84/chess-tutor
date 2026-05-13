@@ -75,29 +75,37 @@ export function PatternSummary({ patterns }: Props) {
       )}
 
       {/* Opening performance */}
-      {opening_stats.length > 0 && (
-        <section className="ga-card">
-          <h3 className="ga-card-title">Opening Performance</h3>
+      {opening_stats.length > 0 && (() => {
+        const white = opening_stats.filter(o => o.color === 'white')
+        const black = opening_stats.filter(o => o.color === 'black')
+
+        const OpeningTable = ({ rows, playerLabel, opponentLabel }: {
+          rows: typeof opening_stats
+          playerLabel: string
+          opponentLabel: string
+        }) => (
           <div className="ga-table-wrap">
             <table className="ga-table">
               <thead>
                 <tr>
+                  <th>{playerLabel}</th>
+                  <th>{opponentLabel}</th>
                   <th>Opening</th>
                   <th>Games</th>
-                  <th>Wins</th>
                   <th>Win%</th>
                   <th>Avg CP Loss</th>
                 </tr>
               </thead>
               <tbody>
-                {opening_stats.slice(0, 10).map((o, i) => (
+                {rows.slice(0, 8).map((o, i) => (
                   <tr key={i}>
+                    <td><strong>{o.player_move_1 || '?'}</strong></td>
+                    <td className="ga-td-secondary">{o.opponent_move_1 || '?'}</td>
                     <td>
                       {o.eco && <span className="ga-td-eco">{o.eco} · </span>}
-                      {o.opening_name || 'Unknown'}
+                      {o.opening_name || '—'}
                     </td>
                     <td>{o.games}</td>
-                    <td>{o.wins}</td>
                     <td>{o.win_rate}%</td>
                     <td className={o.avg_cp_loss > 60 ? 'ga-td-warn' : ''}>{o.avg_cp_loss}</td>
                   </tr>
@@ -105,8 +113,26 @@ export function PatternSummary({ patterns }: Props) {
               </tbody>
             </table>
           </div>
-        </section>
-      )}
+        )
+
+        return (
+          <section className="ga-card">
+            <h3 className="ga-card-title">Opening Performance</h3>
+            {white.length > 0 && (
+              <>
+                <h4 className="ga-card-subtitle">As White — your move · their response</h4>
+                <OpeningTable rows={white} playerLabel="Your move" opponentLabel="They played" />
+              </>
+            )}
+            {black.length > 0 && (
+              <>
+                <h4 className="ga-card-subtitle">As Black — your move · their opening</h4>
+                <OpeningTable rows={black} playerLabel="Your move" opponentLabel="vs" />
+              </>
+            )}
+          </section>
+        )
+      })()}
 
       {/* Top blunders */}
       {top_blunders.length > 0 && (
