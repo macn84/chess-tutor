@@ -1,11 +1,12 @@
 import type { CoachingInsightsResult } from '../../types'
 
 interface Props {
-  insights: CoachingInsightsResult;
+  insights?: CoachingInsightsResult;
 }
 
 function renderInsights(text: string): React.ReactNode {
   // Render **bold** and newlines as simple HTML
+  if (!text) return <p className="ga-insight-line">No insights available.</p>
   const lines = text.split('\n')
   return lines.map((line, i) => {
     if (!line.trim()) return <br key={i} />
@@ -19,6 +20,17 @@ function renderInsights(text: string): React.ReactNode {
 }
 
 export function CoachingInsights({ insights }: Props) {
+  if (!insights || !insights.insights) {
+    return <section className="ga-card ga-card--insights">
+      <div className="ga-insights-header">
+        <h3 className="ga-card-title">Coaching Insights</h3>
+      </div>
+      <div className="ga-insights-body">
+        <p className="ga-insight-line">No insights available.</p>
+      </div>
+    </section>
+  }
+
   return (
     <section className="ga-card ga-card--insights">
       <div className="ga-insights-header">

@@ -104,7 +104,6 @@ def analyze_games(
             continue
 
     job_store.update({
-        "status": "done",
         "progress": 1.0,
         "analyzed_count": total,
         "analyzed_games": analyzed,

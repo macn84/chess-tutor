@@ -103,7 +103,7 @@ export interface GameFilter {
   rated: 'all' | 'rated' | 'unrated';
   min_opponent_rating: number | null;
   max_opponent_rating: number | null;
-  max_games: 25 | 50 | 100 | 200;
+  max_games: 5 | 25 | 50 | 100 | 200;
 }
 
 /** A game fetched from Chess.com (includes PGN for analysis). */

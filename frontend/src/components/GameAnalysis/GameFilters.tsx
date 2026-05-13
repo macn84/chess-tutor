@@ -181,6 +181,7 @@ export function GameFilters({ onSubmit, disabled }: Props) {
               onChange={(e) => setMaxGames(parseInt(e.target.value, 10) as GameFilter['max_games'])}
               disabled={disabled}
             >
+              <option value={5}>5 (debug)</option>
               <option value={25}>25</option>
               <option value={50}>50</option>
               <option value={100}>100</option>

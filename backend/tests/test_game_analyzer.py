@@ -152,7 +152,8 @@ class TestAnalyzeGames:
         flat = [{"score_cp": 0, "san": "e4", "uci": "e2e4", "pv_san": ["e4"]}]
         with patch("engine_manager.analyze", return_value=flat):
             analyze_games([_GAME_SUMMARY], "testuser", job, "fake-id")
-        assert job["status"] == "done"
+        # status="done" is now set by _run in app.py after patterns/insights are ready
+        assert job["status"] == "running"
         assert job["progress"] == 1.0
         assert job["analyzed_count"] == 1
 
@@ -160,7 +161,7 @@ class TestAnalyzeGames:
         job = {"status": "running", "analyzed_count": 0, "progress": 0.0}
         empty_game = {**_GAME_SUMMARY, "pgn": ""}
         analyze_games([empty_game], "testuser", job, "fake-id")
-        assert job["status"] == "done"
+        assert job["progress"] == 1.0
         assert job["analyzed_games"] == []
 
     def test_skips_invalid_pgn_without_crashing(self):
@@ -169,7 +170,7 @@ class TestAnalyzeGames:
         flat = [{"score_cp": 0, "san": "e4", "uci": "e2e4", "pv_san": ["e4"]}]
         with patch("engine_manager.analyze", return_value=flat):
             analyze_games([bad], "testuser", job, "fake-id")
-        assert job["status"] == "done"
+        assert job["progress"] == 1.0
         # Game may or may not be included depending on pgn parse; just no exception
 
     def test_progress_updated_during_run(self):

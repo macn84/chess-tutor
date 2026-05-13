@@ -303,7 +303,7 @@ def api_games_fetch():
         rated (str, optional): all|rated|unrated (default all).
         min_opponent_rating (int, optional): Exclude games vs weaker opponents.
         max_opponent_rating (int, optional): Exclude games vs stronger opponents.
-        max_games (int, optional): 25|50|100|200 (default 100).
+        max_games (int, optional): 5|25|50|100|200 (default 100).
 
     Username is read from the ``CHESS_COM_USERNAME`` environment variable.
 
@@ -397,6 +397,7 @@ def api_games_analyze():
             insights = insights_generator.generate_insights(patterns, analyzed)
             _job_store[job_id]["patterns"] = patterns
             _job_store[job_id]["insights"] = insights
+            _job_store[job_id]["status"] = "done"
         except Exception as exc:
             _job_store[job_id]["status"] = "error"
             _job_store[job_id]["error"] = str(exc)
