@@ -5,12 +5,10 @@ interface Props {
 }
 
 function renderInsights(text: string): React.ReactNode {
-  // Render **bold** and newlines as simple HTML
   if (!text) return <p className="ga-insight-line">No insights available.</p>
   const lines = text.split('\n')
   return lines.map((line, i) => {
     if (!line.trim()) return <br key={i} />
-    // Bold: **text**
     const parts = line.split(/(\*\*[^*]+\*\*)/)
     const rendered = parts.map((p, j) =>
       p.startsWith('**') ? <strong key={j}>{p.slice(2, -2)}</strong> : p,
@@ -42,6 +40,17 @@ export function CoachingInsights({ insights }: Props) {
       <div className="ga-insights-body">
         {renderInsights(insights.insights)}
       </div>
+      {insights.debug_payload && (
+        <details className="ga-debug-panel">
+          <summary className="ga-debug-summary">LLM Debug — prompt &amp; grounding data</summary>
+          <div className="ga-debug-body">
+            <h4 className="ga-debug-heading">System Prompt</h4>
+            <pre className="ga-debug-pre">{insights.debug_payload.system_prompt}</pre>
+            <h4 className="ga-debug-heading">User Message</h4>
+            <pre className="ga-debug-pre">{insights.debug_payload.user_message}</pre>
+          </div>
+        </details>
+      )}
     </section>
   )
 }

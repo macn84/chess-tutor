@@ -654,3 +654,49 @@ body {
   margin-top: 10px;
   margin-bottom: 2px;
 }
+
+/* Debug panel */
+.ga-debug-panel {
+  margin-top: 16px;
+  border-top: 1px solid #333;
+  padding-top: 10px;
+}
+
+.ga-debug-summary {
+  font-size: 11px;
+  color: #888;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ga-debug-summary:hover {
+  color: #aaa;
+}
+
+.ga-debug-body {
+  margin-top: 10px;
+}
+
+.ga-debug-heading {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 12px 0 4px;
+}
+
+.ga-debug-pre {
+  font-size: 11px;
+  color: #bbb;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 10px 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.5;
+  max-height: 400px;
+  overflow-y: auto;
+}

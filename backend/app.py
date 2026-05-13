@@ -390,17 +390,19 @@ def api_games_analyze():
 
     def _run():
         try:
-            game_analyzer.analyze_games(games, username, _job_store[job_id], job_id)
+            game_analyzer.analyze_games(games, username, job, job_id)
             # After analysis, build patterns and insights and attach to job
-            analyzed = _job_store[job_id].get("analyzed_games", [])
+            analyzed = job.get("analyzed_games", [])
             patterns = pattern_detector.detect_patterns(analyzed, username)
             insights = insights_generator.generate_insights(patterns, analyzed)
-            _job_store[job_id]["patterns"] = patterns
-            _job_store[job_id]["insights"] = insights
-            _job_store[job_id]["status"] = "done"
+            job["patterns"] = patterns
+            job["insights"] = insights
+            if insights.get("debug_payload"):
+                job["debug_payload"] = insights["debug_payload"]
+            job["status"] = "done"
         except Exception as exc:
-            _job_store[job_id]["status"] = "error"
-            _job_store[job_id]["error"] = str(exc)
+            job["status"] = "error"
+            job["error"] = str(exc)
 
     threading.Thread(target=_run, daemon=True).start()
     return jsonify({"job_id": job_id, "total": len(games)})
@@ -444,6 +446,7 @@ def api_games_results(job_id: str):
     return jsonify({
         "patterns": job.get("patterns", {}),
         "insights": job.get("insights", {}),
+        "debug_payload": job.get("debug_payload"),
     })
 
 

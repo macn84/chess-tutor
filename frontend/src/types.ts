@@ -171,6 +171,10 @@ export interface AnalysisPatterns {
 export interface CoachingInsightsResult {
   insights: string;
   llm_used: boolean;
+  debug_payload?: {
+    system_prompt: string;
+    user_message: string;
+  };
 }
 
 /** Job status response from /api/games/status. */
