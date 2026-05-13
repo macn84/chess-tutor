@@ -10,18 +10,23 @@
  * - {@link useAnalysis}  — opening book, Stockfish candidates, opponent replies.
  */
 
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { Chess } from 'chess.js'
 import { ChessBoardPanel } from './components/ChessBoard'
 import { TeachingPanel } from './components/TeachingPanel'
 import { MoveHistory } from './components/MoveHistory'
 import { EvalBar } from './components/EvalBar'
+import { GameAnalysisTab } from './components/GameAnalysis/GameAnalysisTab'
 import { useGameState } from './hooks/useGameState'
 import { useAnalysis } from './hooks/useAnalysis'
 import './App.css'
 
+type AppTab = 'tutor' | 'my-games'
+
 /** Root application component. */
 export default function App() {
+  const [activeTab, setActiveTab] = useState<AppTab>('tutor')
+
   const {
     state,
     makeMove,
@@ -39,10 +44,6 @@ export default function App() {
     loadingResponses,
   } = useAnalysis(state.fen, state.lastMoveUci)
 
-  /**
-   * Play a move given in SAN notation for the current position.
-   * Used by the TeachingPanel to play opponent-response lines.
-   */
   const playFromSan = useCallback(
     (san: string) => {
       const chess = new Chess(state.fen)
@@ -58,40 +59,64 @@ export default function App() {
     <div className="app-root">
       <header className="app-header">
         <span className="app-title">♟ Chess Tutor</span>
-        <div className="header-actions">
-          <button onClick={flipBoard}>Flip Board</button>
-          <button onClick={reset}>New Game</button>
-        </div>
+        <nav className="app-tabs">
+          <button
+            className={`app-tab ${activeTab === 'tutor' ? 'app-tab--active' : ''}`}
+            onClick={() => setActiveTab('tutor')}
+          >
+            Tutor
+          </button>
+          <button
+            className={`app-tab ${activeTab === 'my-games' ? 'app-tab--active' : ''}`}
+            onClick={() => setActiveTab('my-games')}
+          >
+            My Games
+          </button>
+        </nav>
+        {activeTab === 'tutor' && (
+          <div className="header-actions">
+            <button onClick={flipBoard}>Flip Board</button>
+            <button onClick={reset}>New Game</button>
+          </div>
+        )}
       </header>
 
-      <main className="app-main">
-        <div className="board-area">
-          <EvalBar evalCp={analysis?.eval_cp ?? null} />
-          <ChessBoardPanel
-            fen={state.fen}
-            orientation={state.orientation}
-            onMove={makeMove}
-            customSquareStyles={lastMoveSquares}
-          />
-        </div>
+      {activeTab === 'tutor' && (
+        <main className="app-main">
+          <div className="board-area">
+            <EvalBar evalCp={analysis?.eval_cp ?? null} />
+            <ChessBoardPanel
+              fen={state.fen}
+              orientation={state.orientation}
+              onMove={makeMove}
+              customSquareStyles={lastMoveSquares}
+            />
+          </div>
 
-        <div className="panel-area">
-          <MoveHistory
-            history={state.history}
-            currentIndex={state.currentIndex}
-            onNavigate={navigate}
-          />
-          <TeachingPanel
-            opening={opening}
-            analysis={analysis}
-            opponentResponses={opponentResponses}
-            loadingAnalysis={loadingAnalysis}
-            loadingResponses={loadingResponses}
-            onPlayMove={makeMove}
-            onPlaySan={playFromSan}
-          />
-        </div>
-      </main>
+          <div className="panel-area">
+            <MoveHistory
+              history={state.history}
+              currentIndex={state.currentIndex}
+              onNavigate={navigate}
+            />
+            <TeachingPanel
+              opening={opening}
+              analysis={analysis}
+              opponentResponses={opponentResponses}
+              loadingAnalysis={loadingAnalysis}
+              loadingResponses={loadingResponses}
+              onPlayMove={makeMove}
+              onPlaySan={playFromSan}
+            />
+          </div>
+        </main>
+      )}
+
+      {activeTab === 'my-games' && (
+        <main className="app-main app-main--full">
+          <GameAnalysisTab />
+        </main>
+      )}
     </div>
   )
 }

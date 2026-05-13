@@ -108,3 +108,549 @@ body {
   background: #333;
   border-radius: 3px;
 }
+
+/* ============================================================
+   Tab navigation
+   ============================================================ */
+
+.app-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.app-tab {
+  padding: 5px 18px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: transparent;
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.app-tab:hover {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.app-tab--active {
+  background: #2a2a2a;
+  color: #fff;
+  border-color: #4a9eff;
+}
+
+.app-main--full {
+  padding: 0;
+  overflow: auto;
+}
+
+/* ============================================================
+   Game Analysis (ga-*) styles
+   ============================================================ */
+
+.ga-root {
+  display: flex;
+  flex: 1;
+  gap: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ga-sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  padding: 20px 16px;
+  border-right: 1px solid #2a2a2a;
+  overflow-y: auto;
+  background: #161616;
+}
+
+.ga-main {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Filters */
+
+.game-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ga-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ga-description {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.5;
+}
+
+.ga-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ga-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.ga-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ga-row .ga-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.ga-input,
+.ga-select {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: #222;
+  color: #eee;
+  font-size: 12px;
+  width: 100%;
+}
+
+.ga-input:focus,
+.ga-select:focus {
+  outline: none;
+  border-color: #4a9eff;
+}
+
+.ga-input:disabled,
+.ga-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ga-note {
+  font-size: 11px;
+  color: #666;
+}
+
+.ga-submit {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background: #4a9eff;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ga-submit:hover:not(:disabled) {
+  background: #3a8eef;
+}
+
+.ga-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ga-reset {
+  margin-top: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: transparent;
+  color: #aaa;
+  font-size: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.ga-reset:hover {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+/* Error */
+
+.ga-error {
+  font-size: 12px;
+  color: #ff6b6b;
+}
+
+.ga-error--block {
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: #2a1212;
+  border: 1px solid #4a2020;
+  font-size: 14px;
+}
+
+/* Empty state */
+
+.ga-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Progress */
+
+.ga-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 20px;
+}
+
+.ga-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #333;
+  border-top-color: #4a9eff;
+  border-radius: 50%;
+  animation: ga-spin 0.8s linear infinite;
+}
+
+@keyframes ga-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ga-progress-label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.ga-progress-bar-track {
+  width: 100%;
+  max-width: 400px;
+  height: 8px;
+  background: #2a2a2a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ga-progress-bar-fill {
+  height: 100%;
+  background: #4a9eff;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.ga-progress-sub {
+  font-size: 12px;
+  color: #888;
+}
+
+.ga-progress-note {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+}
+
+/* Cards */
+
+.ga-patterns {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ga-card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.ga-card--insights {
+  border-color: #2a3a5a;
+  background: #141e2e;
+}
+
+.ga-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #eee;
+  margin-bottom: 12px;
+}
+
+/* Stats grid */
+
+.ga-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.ga-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px;
+  background: #222;
+  border-radius: 6px;
+}
+
+.ga-stat-val {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ga-stat-lbl {
+  font-size: 11px;
+  color: #888;
+}
+
+/* Phase bars */
+
+.ga-phase-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ga-phase-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ga-phase-label {
+  width: 80px;
+  font-size: 12px;
+  color: #aaa;
+  flex-shrink: 0;
+}
+
+.ga-phase-track {
+  flex: 1;
+  height: 10px;
+  background: #2a2a2a;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.ga-phase-fill {
+  height: 100%;
+  border-radius: 5px;
+}
+
+.ga-phase-fill--opening { background: #4a9eff; }
+.ga-phase-fill--middlegame { background: #ff9f4a; }
+.ga-phase-fill--endgame { background: #9fff4a; }
+
+.ga-phase-pct {
+  width: 36px;
+  font-size: 12px;
+  color: #888;
+  text-align: right;
+}
+
+/* Move histogram */
+
+.ga-move-hist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ga-move-hist-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ga-move-num {
+  width: 60px;
+  font-size: 11px;
+  color: #aaa;
+  flex-shrink: 0;
+}
+
+.ga-move-track {
+  flex: 1;
+  height: 8px;
+  background: #2a2a2a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ga-move-fill {
+  height: 100%;
+  background: #9f6bff;
+  border-radius: 4px;
+}
+
+.ga-move-count {
+  width: 24px;
+  font-size: 11px;
+  color: #666;
+  text-align: right;
+}
+
+/* Opening table */
+
+.ga-table-wrap {
+  overflow-x: auto;
+}
+
+.ga-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.ga-table th,
+.ga-table td {
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid #222;
+  color: #ccc;
+}
+
+.ga-table th {
+  color: #888;
+  font-weight: 500;
+  background: #1e1e1e;
+}
+
+.ga-table tr:hover td {
+  background: #1e1e1e;
+}
+
+.ga-td-eco {
+  font-family: monospace;
+  color: #4a9eff;
+}
+
+.ga-td-warn {
+  color: #ff9f4a;
+}
+
+/* Blunders */
+
+.ga-blunders {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ga-blunder-row {
+  padding: 10px 12px;
+  background: #222;
+  border-radius: 6px;
+  border-left: 3px solid #ff4a4a;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ga-blunder-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ga-blunder-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff4a4a;
+}
+
+.ga-blunder-phase {
+  font-size: 11px;
+  color: #888;
+}
+
+.ga-blunder-loss {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ff4a4a;
+}
+
+.ga-blunder-moves {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.ga-blunder-played strong { color: #ff9f4a; }
+.ga-blunder-best strong { color: #4aff9f; }
+
+.ga-blunder-link {
+  font-size: 11px;
+  color: #4a9eff;
+  text-decoration: none;
+}
+
+.ga-blunder-link:hover {
+  text-decoration: underline;
+}
+
+/* Coaching insights */
+
+.ga-insights-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.ga-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ga-badge--claude {
+  background: #2a1e4a;
+  color: #a084ff;
+  border: 1px solid #3a2e6a;
+}
+
+.ga-badge--engine {
+  background: #1e2a1e;
+  color: #84c484;
+  border: 1px solid #2e4a2e;
+}
+
+.ga-insights-body {
+  font-size: 13px;
+  color: #ccc;
+  line-height: 1.65;
+}
+
+.ga-insight-line {
+  margin-bottom: 4px;
+}
+
+.ga-insight-line strong {
+  color: #eee;
+  font-size: 14px;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}

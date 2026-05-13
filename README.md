@@ -19,6 +19,7 @@ sides of the board.
 | **Evaluation bar** | Animated centipawn bar capped at ±600 cp; displays mate-in-N as ±M |
 | **Move history** | Click any move to replay the game from that point; branching replaces future history |
 | **Board controls** | Flip board, New Game |
+| **My Games tab** | Fetches your Chess.com games by date range, time control, colour, and result; batch-analyses them with Stockfish to detect blunders/mistakes/inaccuracies; aggregates patterns across the whole set; generates coaching insights via Claude (Haiku) or falls back to engine-only analysis when no API key is configured |
 
 ---
 
@@ -43,6 +44,8 @@ sides of the board.
 | flask-cors | 4.x | Cross-origin headers for dev |
 | python-chess | 1.11.2 | Board logic, engine bridge |
 | Stockfish | 17.1 | UCI engine binary (pre-compiled) |
+| requests | 2.31+ | Chess.com public API client |
+| anthropic | 0.40+ | Claude API for coaching insights (optional) |
 
 ---
 
@@ -58,6 +61,23 @@ sides of the board.
 
 ---
 
+## Configuration
+
+Copy the example env file and fill in your values:
+
+```bash
+cp chess-tutor/.env-example chess-tutor/.env
+```
+
+`.env` is git-ignored.  `run.sh` sources it automatically before starting Flask.
+
+| Variable | Required | Description |
+|---|---|---|
+| `CHESS_COM_USERNAME` | Yes (for My Games tab) | Your Chess.com username |
+| `ANTHROPIC_API_KEY` | No | Enables Claude Haiku coaching insights; omit to use engine-only fallback |
+
+---
+
 ## Quick Start
 
 ```bash
@@ -67,11 +87,12 @@ cd chess-tutor
 
 `run.sh` will:
 
-1. Activate the Python virtual environment.
-2. `pip install -r requirements.txt` (fast on repeat runs — already satisfied).
-3. Start Flask on `http://localhost:5000` in the background.
-4. Run `npm install --silent` inside `frontend/`.
-5. Start the Vite dev server on `http://localhost:5173`.
+1. Source `.env` if present.
+2. Activate the Python virtual environment.
+3. `pip install -r requirements.txt` (fast on repeat runs — already satisfied).
+4. Start Flask on `http://localhost:5000` in the background.
+5. Run `npm install --silent` inside `frontend/`.
+6. Start the Vite dev server on `http://localhost:5173`.
 
 Open **http://localhost:5173** in your browser.  Press `Ctrl+C` to stop both servers.
 
@@ -82,17 +103,26 @@ Open **http://localhost:5173** in your browser.  Press `Ctrl+C` to stop both ser
 ```
 chess-tutor/
 ├── run.sh                         # Single-command startup script
+├── .env-example                   # Environment variable template (copy to .env)
 ├── requirements.txt               # Python dependencies
 ├── backend/
-│   ├── app.py                     # Flask application — 4 API routes
+│   ├── app.py                     # Flask application — 8 API routes
 │   ├── engine_manager.py          # Persistent Stockfish singleton
 │   ├── explainer.py               # Template-based move prose generator
+│   ├── game_fetcher.py            # Chess.com public API client
+│   ├── game_analyzer.py           # Batch Stockfish blunder detection
+│   ├── pattern_detector.py        # Cross-game pattern aggregation
+│   ├── insights_generator.py      # Claude (Haiku) coaching + engine fallback
 │   ├── pytest.ini                 # Pytest configuration (marks)
 │   ├── tests/
-│   │   ├── test_app.py            # Flask route tests (mocked engine)
+│   │   ├── test_app.py            # Flask route tests (mocked engine + game modules)
 │   │   ├── test_engine_manager.py # Engine unit + integration tests
 │   │   ├── test_explainer.py      # Prose generator tests
-│   │   └── test_opening_book.py   # Loader / FEN normalisation tests
+│   │   ├── test_opening_book.py   # Loader / FEN normalisation tests
+│   │   ├── test_game_fetcher.py   # Chess.com client (requests mocked)
+│   │   ├── test_game_analyzer.py  # Blunder detector (engine mocked)
+│   │   ├── test_pattern_detector.py # Pattern aggregation logic
+│   │   └── test_insights_generator.py # Fallback + Claude path (anthropic mocked)
 │   └── opening_book/
 │       ├── __init__.py            # Package re-exports
 │       ├── loader.py              # book.json → in-memory dict at startup
@@ -103,18 +133,25 @@ chess-tutor/
     └── src/
         ├── App.tsx                # Root layout component
         ├── App.css                # Dark-theme global styles
-        ├── api.ts                 # Typed fetch wrappers for all 4 endpoints
+        ├── api.ts                 # Typed fetch wrappers for all 8 endpoints
         ├── types.ts               # Shared TypeScript interfaces
         ├── hooks/
         │   ├── useGameState.ts    # useReducer game state machine
-        │   └── useAnalysis.ts     # Debounced API calls on FEN change
+        │   ├── useAnalysis.ts     # Debounced API calls on FEN change
+        │   └── useGameAnalysis.ts # State machine for My Games tab
         ├── components/
         │   ├── ChessBoard.tsx     # react-chessboard wrapper
         │   ├── TeachingPanel.tsx  # Right-side container panel
         │   ├── CandidateMoves.tsx # Expandable ranked-move cards
         │   ├── OpponentResponses.tsx # Blue-tinted opponent-reply cards
         │   ├── MoveHistory.tsx    # Click-to-navigate move table
-        │   └── EvalBar.tsx        # Vertical centipawn bar
+        │   ├── EvalBar.tsx        # Vertical centipawn bar
+        │   └── GameAnalysis/
+        │       ├── GameAnalysisTab.tsx   # My Games root container
+        │       ├── GameFilters.tsx       # Date/filter form
+        │       ├── AnalysisProgress.tsx  # Polling progress bar
+        │       ├── PatternSummary.tsx    # Stats, openings, blunders
+        │       └── CoachingInsights.tsx  # Claude / engine insight card
         └── test/
             ├── setup.ts           # jest-dom import for all tests
             ├── api.test.ts        # API client unit tests (fetch mocked)
@@ -217,6 +254,88 @@ frontend uses chess.js locally and rarely calls this endpoint.
 
 ---
 
+### `POST /api/games/fetch`
+
+Fetch and filter a player's games from the Chess.com public API.
+Username is read from the `CHESS_COM_USERNAME` environment variable.
+
+**Request body**
+```json
+{
+  "start_date": "2024-01-01",
+  "end_date":   "2024-03-31",
+  "time_class": "rapid",
+  "color":      "white",
+  "result":     "loss"
+}
+```
+`time_class` defaults to `"all"` (rapid | blitz | bullet | daily | all).
+`color` defaults to `"both"`. `result` defaults to `"all"`.
+
+**Response**
+```json
+{ "games": [...], "count": 47 }
+```
+
+HTTP errors: `400` bad params, `502` Chess.com unreachable.
+
+---
+
+### `POST /api/games/analyze`
+
+Start a background batch analysis job and return a job ID immediately.
+Username is read from the `CHESS_COM_USERNAME` environment variable.
+
+**Request body**
+```json
+{ "games": [...] }
+```
+Maximum 100 games per request.
+
+**Response**
+```json
+{ "job_id": "uuid", "total": 47 }
+```
+
+---
+
+### `GET /api/games/status/<job_id>`
+
+Poll job progress.
+
+**Response**
+```json
+{ "status": "running", "progress": 0.42, "analyzed_count": 20, "total": 47 }
+```
+`status` is `running`, `done`, or `error`.
+
+---
+
+### `GET /api/games/results/<job_id>`
+
+Retrieve completed results (only when `status == "done"`; returns 202 otherwise).
+
+**Response**
+```json
+{
+  "patterns": {
+    "total_games": 47,
+    "wins": 30,
+    "blunders_per_game": 1.4,
+    "phase_distribution": { "opening": 35, "middlegame": 48, "endgame": 17 },
+    "top_blunders": [...],
+    "opening_stats": [...],
+    "mistake_move_numbers": [...]
+  },
+  "insights": {
+    "insights": "Finding 1: ...",
+    "llm_used": true
+  }
+}
+```
+
+---
+
 ## Opening Book Format
 
 `backend/opening_book/book.json` contains a top-level `"entries"` array.
@@ -269,11 +388,15 @@ source ../../my-venv/bin/activate
 python -m pytest tests/ -m "not integration" -v
 ```
 
-This runs 59 unit/integration tests covering:
+This runs 153+ unit/integration tests covering:
 - FEN normalisation and transposition-safe book lookup
 - Template prose generation for all move types
-- All four Flask routes (engine mocked via `unittest.mock.patch`)
+- All eight Flask routes (engine + game modules mocked)
 - `_pv_to_san` and `analyze()` with a mock engine
+- Chess.com API client (requests mocked): month ranges, filters, error handling
+- Batch blunder detector: phase classification, cp-loss calculation, game walking
+- Pattern aggregation: win/loss/draw counts, phase distribution, opening stats, histograms
+- Coaching insights: fallback text generation and Claude path (anthropic SDK mocked)
 
 To also run the Stockfish integration tests (requires the binary):
 

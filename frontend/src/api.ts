@@ -7,7 +7,16 @@
  * needed.
  */
 
-import type { AnalysisResult, OpeningEntry, OpponentResponsesResult } from './types'
+import type {
+  AnalysisResult,
+  OpeningEntry,
+  OpponentResponsesResult,
+  GameFilter,
+  FetchedGame,
+  AnalysisJobStatus,
+  AnalysisPatterns,
+  CoachingInsightsResult,
+} from './types'
 
 /**
  * Look up a position in the opening book (fast, no engine call).
@@ -74,5 +83,62 @@ export async function fetchOpponentResponses(
     signal,
   })
   if (!res.ok) throw new Error('opponent responses fetch failed')
+  return res.json()
+}
+
+// ---------------------------------------------------------------------------
+// Game analysis API
+// ---------------------------------------------------------------------------
+
+/** Fetch and filter a player's games from Chess.com. */
+export async function fetchPlayerGames(
+  filter: GameFilter,
+  signal?: AbortSignal,
+): Promise<{ games: FetchedGame[]; count: number }> {
+  const res = await fetch('/api/games/fetch', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(filter),
+    signal,
+  })
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error ?? 'fetch failed')
+  }
+  return res.json()
+}
+
+/** Start a background batch analysis job. Returns the job_id. */
+export async function startAnalysisJob(
+  games: FetchedGame[],
+): Promise<{ job_id: string; total: number }> {
+  const res = await fetch('/api/games/analyze', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ games }),
+  })
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error ?? 'start analysis failed')
+  }
+  return res.json()
+}
+
+/** Poll job progress. */
+export async function pollJobStatus(jobId: string): Promise<AnalysisJobStatus> {
+  const res = await fetch(`/api/games/status/${jobId}`)
+  if (!res.ok) throw new Error('status fetch failed')
+  return res.json()
+}
+
+/** Retrieve completed analysis results. */
+export async function fetchAnalysisResults(
+  jobId: string,
+): Promise<{ patterns: AnalysisPatterns; insights: CoachingInsightsResult }> {
+  const res = await fetch(`/api/games/results/${jobId}`)
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error ?? 'results fetch failed')
+  }
   return res.json()
 }

@@ -239,3 +239,221 @@ class TestFormatScore:
     def test_mate_negative(self):
         from app import _format_score
         assert _format_score(-9500) == "-M"
+
+
+# ---------------------------------------------------------------------------
+# POST /api/games/fetch
+# ---------------------------------------------------------------------------
+
+
+_SAMPLE_GAME_SUMMARY = {
+    "url": "https://chess.com/game/1",
+    "pgn": "1. e4 c5 1-0",
+    "time_class": "rapid",
+    "color": "white",
+    "result": "win",
+    "eco": "B20",
+    "opening_name": "Sicilian",
+    "white_username": "testuser",
+    "black_username": "opponent",
+    "white_rating": 1200,
+    "black_rating": 1100,
+    "end_time": 1700000000,
+    "accuracies": None,
+}
+
+
+class TestApiGamesFetch:
+    _ENV = {"CHESS_COM_USERNAME": "testuser"}
+
+    def test_returns_games_and_count(self, client):
+        with patch.dict("os.environ", self._ENV):
+            with patch("game_fetcher.fetch_games", return_value=[_SAMPLE_GAME_SUMMARY]):
+                resp = client.post(
+                    "/api/games/fetch",
+                    data=json.dumps({"start_date": "2024-01-01", "end_date": "2024-01-31"}),
+                    content_type="application/json",
+                )
+        assert resp.status_code == 200
+        data = resp.get_json()
+        assert data["count"] == 1
+        assert len(data["games"]) == 1
+
+    def test_missing_username_env_returns_400(self, client):
+        with patch.dict("os.environ", {"CHESS_COM_USERNAME": ""}):
+            resp = client.post(
+                "/api/games/fetch",
+                data=json.dumps({"start_date": "2024-01-01", "end_date": "2024-01-31"}),
+                content_type="application/json",
+            )
+        assert resp.status_code == 400
+
+    def test_invalid_date_format_returns_400(self, client):
+        with patch.dict("os.environ", self._ENV):
+            resp = client.post(
+                "/api/games/fetch",
+                data=json.dumps({"start_date": "not-a-date", "end_date": "2024-01-31"}),
+                content_type="application/json",
+            )
+        assert resp.status_code == 400
+
+    def test_start_after_end_returns_400(self, client):
+        with patch.dict("os.environ", self._ENV):
+            resp = client.post(
+                "/api/games/fetch",
+                data=json.dumps({"start_date": "2024-06-01", "end_date": "2024-01-01"}),
+                content_type="application/json",
+            )
+        assert resp.status_code == 400
+
+    def test_chess_com_error_returns_502(self, client):
+        with patch.dict("os.environ", self._ENV):
+            with patch("game_fetcher.fetch_games", side_effect=RuntimeError("Chess.com failed")):
+                resp = client.post(
+                    "/api/games/fetch",
+                    data=json.dumps({"start_date": "2024-01-01", "end_date": "2024-01-31"}),
+                    content_type="application/json",
+                )
+        assert resp.status_code == 502
+
+    def test_passes_filters_to_fetcher(self, client):
+        with patch.dict("os.environ", self._ENV):
+            with patch("game_fetcher.fetch_games", return_value=[]) as mock_fetch:
+                client.post(
+                    "/api/games/fetch",
+                    data=json.dumps({
+                        "start_date": "2024-01-01",
+                        "end_date": "2024-01-31",
+                        "time_class": "rapid",
+                        "color": "white",
+                        "result": "win",
+                    }),
+                    content_type="application/json",
+                )
+        call_kwargs = mock_fetch.call_args.kwargs
+        assert call_kwargs["time_class"] == "rapid"
+        assert call_kwargs["color"] == "white"
+        assert call_kwargs["result"] == "win"
+
+
+# ---------------------------------------------------------------------------
+# POST /api/games/analyze
+# ---------------------------------------------------------------------------
+
+
+class TestApiGamesAnalyze:
+    _GAMES = [_SAMPLE_GAME_SUMMARY]
+    _ENV = {"CHESS_COM_USERNAME": "testuser"}
+
+    def test_creates_job_and_returns_id(self, client):
+        with patch.dict("os.environ", self._ENV):
+            resp = client.post(
+                "/api/games/analyze",
+                data=json.dumps({"games": self._GAMES}),
+                content_type="application/json",
+            )
+        assert resp.status_code == 200
+        data = resp.get_json()
+        assert "job_id" in data
+        assert data["total"] == 1
+
+    def test_missing_username_env_returns_400(self, client):
+        with patch.dict("os.environ", {"CHESS_COM_USERNAME": ""}):
+            resp = client.post(
+                "/api/games/analyze",
+                data=json.dumps({"games": self._GAMES}),
+                content_type="application/json",
+            )
+        assert resp.status_code == 400
+
+    def test_empty_games_returns_400(self, client):
+        with patch.dict("os.environ", self._ENV):
+            resp = client.post(
+                "/api/games/analyze",
+                data=json.dumps({"games": []}),
+                content_type="application/json",
+            )
+        assert resp.status_code == 400
+
+    def test_too_many_games_returns_400(self, client):
+        games = [_SAMPLE_GAME_SUMMARY] * 201
+        with patch.dict("os.environ", self._ENV):
+            resp = client.post(
+                "/api/games/analyze",
+                data=json.dumps({"games": games}),
+                content_type="application/json",
+            )
+        assert resp.status_code == 400
+
+
+# ---------------------------------------------------------------------------
+# GET /api/games/status/<job_id>
+# ---------------------------------------------------------------------------
+
+
+class TestApiGamesStatus:
+    def test_unknown_job_returns_404(self, client):
+        resp = client.get("/api/games/status/nonexistent-job-id")
+        assert resp.status_code == 404
+
+    def test_known_job_returns_status_fields(self, client):
+        with patch.dict("os.environ", {"CHESS_COM_USERNAME": "testuser"}):
+            resp = client.post(
+                "/api/games/analyze",
+                data=json.dumps({"games": [_SAMPLE_GAME_SUMMARY]}),
+                content_type="application/json",
+            )
+        job_id = resp.get_json()["job_id"]
+
+        status_resp = client.get(f"/api/games/status/{job_id}")
+        assert status_resp.status_code == 200
+        data = status_resp.get_json()
+        assert "status" in data
+        assert "progress" in data
+        assert "analyzed_count" in data
+        assert "total" in data
+
+
+# ---------------------------------------------------------------------------
+# GET /api/games/results/<job_id>
+# ---------------------------------------------------------------------------
+
+
+class TestApiGamesResults:
+    def test_unknown_job_returns_404(self, client):
+        resp = client.get("/api/games/results/nonexistent-job-id")
+        assert resp.status_code == 404
+
+    def test_pending_job_returns_202(self, client):
+        import uuid
+        from app import _job_store
+        job_id = str(uuid.uuid4())
+        _job_store[job_id] = {
+            "status": "running",
+            "progress": 0.3,
+            "analyzed_count": 3,
+            "total": 10,
+            "created_at": 9_999_999_999,
+        }
+        resp = client.get(f"/api/games/results/{job_id}")
+        assert resp.status_code == 202
+
+    def test_done_job_returns_patterns_and_insights(self, client):
+        import uuid
+        from app import _job_store
+        job_id = str(uuid.uuid4())
+        _job_store[job_id] = {
+            "status": "done",
+            "progress": 1.0,
+            "analyzed_count": 5,
+            "total": 5,
+            "patterns": {"total_games": 5, "username": "testuser"},
+            "insights": {"insights": "great play", "llm_used": False},
+            "created_at": 9_999_999_999,
+        }
+        resp = client.get(f"/api/games/results/{job_id}")
+        assert resp.status_code == 200
+        data = resp.get_json()
+        assert "patterns" in data
+        assert "insights" in data
+        assert data["patterns"]["total_games"] == 5
