@@ -49,7 +49,10 @@ def _cleanup_jobs() -> None:
         time.sleep(300)
         cutoff = time.time() - _JOB_TTL_SEC
         with _job_lock:
-            expired = [jid for jid, j in _job_store.items() if j.get("created_at", 0) < cutoff]
+            expired = [
+                jid for jid, j in _job_store.items()
+                if j.get("created_at", 0) < cutoff and j.get("status") != "running"
+            ]
             for jid in expired:
                 del _job_store[jid]
 
@@ -397,8 +400,6 @@ def api_games_analyze():
             insights = insights_generator.generate_insights(patterns, analyzed)
             job["patterns"] = patterns
             job["insights"] = insights
-            if insights.get("debug_payload"):
-                job["debug_payload"] = insights["debug_payload"]
             job["status"] = "done"
         except Exception as exc:
             job["status"] = "error"
@@ -446,7 +447,6 @@ def api_games_results(job_id: str):
     return jsonify({
         "patterns": job.get("patterns", {}),
         "insights": job.get("insights", {}),
-        "debug_payload": job.get("debug_payload"),
     })
 
 

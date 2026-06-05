@@ -106,14 +106,13 @@ def _llm_insights(patterns: dict, analyzed_games: list[dict], api_key: str) -> d
     )
 
     text = response.content[0].text if response.content else ""
-    return {
-        "insights": text,
-        "llm_used": True,
-        "debug_payload": {
+    result: dict = {"insights": text, "llm_used": True}
+    if os.environ.get("DEBUG_LLM_PAYLOADS"):
+        result["debug_payload"] = {
             "system_prompt": _SYSTEM_PROMPT,
             "user_message": user_message,
-        },
-    }
+        }
+    return result
 
 
 # ---------------------------------------------------------------------------
