@@ -66,6 +66,9 @@ class TestPvToSan:
 class TestAnalyzeUnit:
     """Unit tests for engine_manager.analyze() with a mocked engine."""
 
+    def setup_method(self):
+        engine_manager._cached_analyze.cache_clear()
+
     def _make_mock_engine(self, score_cp: int = 30) -> MagicMock:
         """Build a mock SimpleEngine that returns a single candidate."""
         mock_score = MagicMock()

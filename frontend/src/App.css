@@ -700,3 +700,98 @@ body {
   max-height: 400px;
   overflow-y: auto;
 }
+
+/* Download toolbar */
+.ga-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.ga-download-btn {
+  background: #2a2a2a;
+  color: #ccc;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ga-download-btn:hover {
+  background: #3a3a3a;
+  color: #fff;
+}
+
+/* ── Print / PDF styles ─────────────────────────────────────── */
+@media print {
+  /* Hide everything except the analysis results */
+  .app-tabs,
+  .ga-sidebar,
+  .ga-toolbar,
+  .ga-blunder-link,
+  .ga-debug-panel {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #111;
+  }
+
+  .ga-root {
+    display: block;
+    padding: 0;
+  }
+
+  .ga-main {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .ga-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    break-inside: avoid;
+    margin-bottom: 18px;
+    page-break-inside: avoid;
+  }
+
+  .ga-card-title {
+    color: #111;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .ga-stat-val { color: #111; }
+  .ga-stat-lbl { color: #555; }
+
+  .ga-phase-fill--opening    { background: #2266cc !important; }
+  .ga-phase-fill--middlegame { background: #cc6622 !important; }
+  .ga-phase-fill--endgame    { background: #228833 !important; }
+  .ga-phase-pct { color: #111; }
+  .ga-phase-label { color: #111; }
+
+  .ga-move-num { color: #111; }
+  .ga-move-count { color: #111; }
+  .ga-move-fill { background: #4a9eff !important; }
+
+  .ga-table th { background: #f0f0f0; color: #111; }
+  .ga-table td { color: #111; }
+  .ga-table tr:hover td { background: transparent; }
+  .ga-td-warn { color: #cc3300 !important; }
+  .ga-td-secondary { color: #555; }
+  .ga-td-eco { color: #333; }
+
+  .ga-blunder-meta { color: #111; }
+  .ga-blunder-phase { color: #555; }
+  .ga-blunder-loss { color: #cc3300; }
+  .ga-blunder-played strong { color: #cc6622 !important; }
+  .ga-blunder-best strong { color: #228833 !important; }
+
+  .ga-card--insights { border-left: 3px solid #2266cc; }
+  .ga-badge { display: none; }
+  .ga-insight-line { color: #111; }
+  .ga-insight-line strong { color: #111; }
+}

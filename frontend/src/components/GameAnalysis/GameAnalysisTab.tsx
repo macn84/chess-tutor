@@ -45,6 +45,15 @@ export function GameAnalysisTab() {
 
         {stage === 'done' && patterns && insights && (
           <>
+            <div className="ga-toolbar">
+              <button
+                className="ga-download-btn"
+                onClick={() => window.print()}
+                title="Save as PDF via browser print dialog"
+              >
+                ↓ Download PDF
+              </button>
+            </div>
             <CoachingInsights insights={insights} />
             <PatternSummary patterns={patterns} />
           </>

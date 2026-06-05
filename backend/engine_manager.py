@@ -14,6 +14,7 @@ Critical constraints
 """
 
 import atexit
+import functools
 import threading
 import chess
 import chess.engine
@@ -33,7 +34,9 @@ def _start_engine() -> chess.engine.SimpleEngine:
     Returns:
         A ready-to-use ``chess.engine.SimpleEngine`` instance.
     """
-    return chess.engine.SimpleEngine.popen_uci(STOCKFISH_PATH)
+    engine = chess.engine.SimpleEngine.popen_uci(STOCKFISH_PATH)
+    engine.configure({"Threads": 4, "Hash": 128})
+    return engine
 
 
 def get_engine() -> chess.engine.SimpleEngine:
@@ -53,12 +56,46 @@ def get_engine() -> chess.engine.SimpleEngine:
     return _engine
 
 
+@functools.lru_cache(maxsize=256)
+def _cached_analyze(fen: str, time_sec: float, multipv: int) -> tuple[dict, ...]:
+    """Cached inner analysis — keyed by (fen, time_sec, multipv).
+
+    Returns a tuple of candidate dicts so the result is hashable/cacheable.
+    Cache is invalidated on engine restart via ``analyze()``'s except branch.
+    """
+    engine = get_engine()
+    board = chess.Board(fen)
+    results = engine.analyse(board, chess.engine.Limit(time=time_sec), multipv=multipv)
+
+    candidates = []
+    for info in results:
+        pv = info.get("pv", [])
+        move = pv[0] if pv else None
+        if move is None:
+            continue
+        score = info.get("score")
+        if score is None:
+            continue
+        cp = score.white().score(mate_score=10000)
+        candidates.append({
+            "uci": move.uci(),
+            "san": board.san(move),
+            "score_cp": cp if cp is not None else 0,
+            "pv_san": _pv_to_san(board, pv[:6]),
+        })
+
+    return tuple(candidates)
+
+
 def analyze(fen: str, time_sec: float = 1.5, multipv: int = 4) -> list[dict]:
     """Run Stockfish multi-PV analysis and return ranked candidate moves.
 
+    Results are LRU-cached by (fen, time_sec, multipv) — repeated positions
+    (common in openings) return instantly without re-running the engine.
+
     Calls ``engine.analyse()`` without an external lock — SimpleEngine is
-    internally thread-safe.  If the engine process is dead, restarts it once
-    and retries.
+    internally thread-safe.  If the engine process is dead, restarts it once,
+    clears the cache, and retries.
 
     Args:
         fen: FEN string of the position to analyse.
@@ -75,14 +112,10 @@ def analyze(fen: str, time_sec: float = 1.5, multipv: int = 4) -> list[dict]:
     Raises:
         Exception: Re-raised if analysis fails after one restart attempt.
     """
-    engine = get_engine()
-    board = chess.Board(fen)
-    limit = chess.engine.Limit(time=time_sec)
-
     try:
-        results = engine.analyse(board, limit, multipv=multipv)
+        return list(_cached_analyze(fen, time_sec, multipv))
     except Exception:
-        # Engine process died; restart and retry once
+        # Engine process died; restart, clear stale cache entries, and retry
         global _engine
         with _lock:
             try:
@@ -90,29 +123,8 @@ def analyze(fen: str, time_sec: float = 1.5, multipv: int = 4) -> list[dict]:
             except Exception:
                 pass
             _engine = _start_engine()
-        results = _engine.analyse(board, limit, multipv=multipv)
-
-    candidates = []
-    for info in results:
-        pv = info.get("pv", [])
-        move = pv[0] if pv else None
-        if move is None:
-            continue
-        score = info.get("score")
-        if score is None:
-            continue
-
-        cp = score.white().score(mate_score=10000)
-        pv_san = _pv_to_san(board, pv[:6])
-
-        candidates.append({
-            "uci": move.uci(),
-            "san": board.san(move),
-            "score_cp": cp if cp is not None else 0,
-            "pv_san": pv_san,
-        })
-
-    return candidates
+        _cached_analyze.cache_clear()
+        return list(_cached_analyze(fen, time_sec, multipv))
 
 
 def _pv_to_san(board: chess.Board, pv: list[chess.Move]) -> list[str]:
